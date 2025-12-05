@@ -22,6 +22,7 @@ export default function Home() {
     "police",
     "medicalTech",
     "religiousVocations",
+    "military",
   ];
 
   return (

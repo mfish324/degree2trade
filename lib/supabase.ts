@@ -37,7 +37,8 @@ export type CareerPathFilter =
   | "welder"
   | "police"
   | "medicalTech"
-  | "religiousVocations";
+  | "religiousVocations"
+  | "military";
 
 export type ProgramTypeFilter =
   | "all"

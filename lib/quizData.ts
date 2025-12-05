@@ -10,7 +10,8 @@ export type CareerPath =
   | "welder"
   | "police"
   | "medicalTech"
-  | "religiousVocations";
+  | "religiousVocations"
+  | "military";
 
 // Quiz question interface
 export interface QuizOption {
@@ -608,6 +609,27 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
       Any: "Seminary isn't wasting your degree - it's building on your education for deeper impact. Your academic foundation enriches theological study and ministry preparation.",
     },
   },
+  military: {
+    title: "Military Service",
+    salary: "$45,000-$100,000+ (with benefits)",
+    training: "8-13 weeks basic + specialty training",
+    growth: "Stable",
+    icon: "🎖️",
+    tagline: "Serve your country while building valuable skills",
+    description:
+      "Military service offers structured career paths across Army, Navy, Air Force, Marines, Coast Guard, and Space Force. Enlisted and officer tracks provide training, benefits, and skills transferable to civilian careers.",
+    degreeAdvantages: {
+      Engineering:
+        "Your engineering degree qualifies you for officer programs and technical specialties in aviation, cyber, nuclear, and weapons systems.",
+      Business:
+        "Your business background prepares you for logistics, supply chain, finance, and leadership roles across all branches.",
+      Healthcare:
+        "Your healthcare education opens paths to military medical corps, nursing, or becoming a military physician with student loan repayment.",
+      "Computer Science":
+        "Your CS degree is highly valued for cyber warfare, intelligence, communications, and technology specialist roles.",
+      Any: "College graduates can enter as officers with higher pay and leadership responsibilities. Your degree demonstrates the discipline and learning ability the military values.",
+    },
+  },
 };
 
 // Career library data - detailed information for each career path
@@ -1040,6 +1062,47 @@ export const careerLibrary: Record<CareerPath, CareerLibraryInfo> = {
     prosAndCons: {
       pros: ["Deeply meaningful work", "Serving a faith community", "Variety of ministry settings", "Lifelong learning"],
       cons: ["Often lower pay", "Always 'on call' for congregation", "Emotional demands of pastoral care", "Navigating church politics"],
+    },
+  },
+  military: {
+    dayInLife: [
+      "Physical training and maintaining combat readiness",
+      "Specialized job duties based on Military Occupational Specialty (MOS)",
+      "Training exercises and skill development",
+      "Equipment maintenance and inspections",
+      "Leadership duties and team coordination",
+    ],
+    keySkills: [
+      "Physical fitness and endurance",
+      "Discipline and attention to detail",
+      "Leadership and teamwork",
+      "Technical skills (varies by specialty)",
+      "Adaptability and problem-solving under pressure",
+    ],
+    certifications: [
+      "Basic Training Completion",
+      "Advanced Individual Training (AIT) or specialty school",
+      "Security Clearance (many roles)",
+      "MOS-specific certifications",
+      "Officer Candidate School (OCS) for officers",
+    ],
+    careerPath: [
+      "Recruit / Basic Training",
+      "Junior Enlisted (E1-E4)",
+      "Non-Commissioned Officer (E5-E9)",
+      "Warrant Officer / Officer (O1-O10)",
+      "Senior Leadership / Command",
+    ],
+    resources: [
+      { name: "GoArmy.com", url: "https://www.goarmy.com" },
+      { name: "Navy.com", url: "https://www.navy.com" },
+      { name: "AirForce.com", url: "https://www.airforce.com" },
+      { name: "Marines.com", url: "https://www.marines.com" },
+      { name: "GoCoastGuard.com", url: "https://www.gocoastguard.com" },
+    ],
+    prosAndCons: {
+      pros: ["Full benefits (healthcare, housing, education)", "Job security and steady pay", "Valuable skills training", "GI Bill for education", "Sense of purpose and camaraderie"],
+      cons: ["Risk of deployment to conflict zones", "Frequent relocations", "Time away from family", "Strict hierarchy and rules", "Physical demands"],
     },
   },
 };
