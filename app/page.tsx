@@ -2,6 +2,13 @@ import Link from "next/link";
 import { careerPaths, CareerPath } from "@/lib/quizData";
 import { shortageStatistics, newsItems } from "@/lib/shortageData";
 
+// TODO: Optimize for AdSense approval after beta testing
+// - Add Privacy Policy page (required)
+// - Add About/Contact pages with real content
+// - Add individual career detail pages for more ad inventory
+// - Consider ad placements: header banner, between sections, sidebar on results
+// - Look into affiliate partnerships with trade schools
+
 export default function Home() {
   const featuredCareers: CareerPath[] = [
     "electrician",
