@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useState, useMemo } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import {
@@ -9,6 +9,7 @@ import {
   careerLibrary,
   getDegreeAdvantage,
 } from "@/lib/quizData";
+import { careerComparisons } from "@/lib/shortageData";
 
 type CareerScores = Record<CareerPath, number>;
 
@@ -18,6 +19,26 @@ function ResultsContent() {
   const [majorInput, setMajorInput] = useState("");
   const [showMajorPrompt, setShowMajorPrompt] = useState(true);
   const [expandedLibrary, setExpandedLibrary] = useState<CareerPath | null>(null);
+
+  // Self-directed career filters
+  const [minSalary, setMinSalary] = useState<number>(0);
+  const [maxTrainingMonths, setMaxTrainingMonths] = useState<number>(60);
+  const [trainingCost, setTrainingCost] = useState<string>("all");
+  const [physicalDemand, setPhysicalDemand] = useState<string>("all");
+  const [workSchedule, setWorkSchedule] = useState<string>("all");
+  const [showExplorer, setShowExplorer] = useState(false);
+
+  // Filter careers based on user preferences
+  const filteredCareers = useMemo(() => {
+    return careerComparisons.filter(career => {
+      if (career.avgSalary < minSalary) return false;
+      if (career.trainingMonths > maxTrainingMonths) return false;
+      if (trainingCost !== "all" && career.trainingCost !== trainingCost) return false;
+      if (physicalDemand !== "all" && career.physicalDemand !== physicalDemand) return false;
+      if (workSchedule !== "all" && career.workSchedule !== workSchedule) return false;
+      return true;
+    }).sort((a, b) => b.avgSalary - a.avgSalary);
+  }, [minSalary, maxTrainingMonths, trainingCost, physicalDemand, workSchedule]);
 
   // Parse scores from URL
   const scoresParam = searchParams.get("scores");
@@ -267,6 +288,207 @@ function ResultsContent() {
           </div>
         </section>
       )}
+
+      {/* Self-Directed Career Explorer */}
+      <section className="py-12 px-4 bg-gradient-to-br from-primary/5 via-background to-background">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold mb-2">Find Your Perfect Fit</h2>
+            <p className="text-text-secondary">
+              Not sure about your quiz results? Explore careers based on what matters most to you.
+            </p>
+            <button
+              onClick={() => setShowExplorer(!showExplorer)}
+              className="mt-4 px-6 py-2 bg-primary hover:bg-primary-hover text-white rounded-lg transition-colors"
+            >
+              {showExplorer ? "Hide Explorer" : "Open Career Explorer"}
+            </button>
+          </div>
+
+          {showExplorer && (
+            <div className="bg-surface rounded-xl border border-surface-light p-6">
+              {/* Filter Controls */}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                {/* Salary Filter */}
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    Minimum Salary: ${minSalary.toLocaleString()}+
+                  </label>
+                  <input
+                    type="range"
+                    min="0"
+                    max="80000"
+                    step="5000"
+                    value={minSalary}
+                    onChange={(e) => setMinSalary(Number(e.target.value))}
+                    className="w-full accent-primary"
+                  />
+                  <div className="flex justify-between text-xs text-text-muted mt-1">
+                    <span>Any</span>
+                    <span>$80K+</span>
+                  </div>
+                </div>
+
+                {/* Training Time Filter */}
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    Max Training Time: {maxTrainingMonths < 60 ? `${maxTrainingMonths} months` : "Any"}
+                  </label>
+                  <input
+                    type="range"
+                    min="3"
+                    max="60"
+                    step="3"
+                    value={maxTrainingMonths}
+                    onChange={(e) => setMaxTrainingMonths(Number(e.target.value))}
+                    className="w-full accent-primary"
+                  />
+                  <div className="flex justify-between text-xs text-text-muted mt-1">
+                    <span>3 months</span>
+                    <span>5 years</span>
+                  </div>
+                </div>
+
+                {/* Training Cost Filter */}
+                <div>
+                  <label className="block text-sm font-medium mb-2">Training Cost</label>
+                  <select
+                    value={trainingCost}
+                    onChange={(e) => setTrainingCost(e.target.value)}
+                    className="w-full px-3 py-2 bg-surface-light border border-surface-light rounded-lg text-text-primary"
+                  >
+                    <option value="all">Any Cost</option>
+                    <option value="free">Free (Paid Apprenticeship)</option>
+                    <option value="low">Low (Under $15K)</option>
+                    <option value="medium">Medium ($15-60K)</option>
+                  </select>
+                </div>
+
+                {/* Physical Demand Filter */}
+                <div>
+                  <label className="block text-sm font-medium mb-2">Physical Demand</label>
+                  <select
+                    value={physicalDemand}
+                    onChange={(e) => setPhysicalDemand(e.target.value)}
+                    className="w-full px-3 py-2 bg-surface-light border border-surface-light rounded-lg text-text-primary"
+                  >
+                    <option value="all">Any Level</option>
+                    <option value="low">Low (Desk/Lab work)</option>
+                    <option value="medium">Medium (Some physical activity)</option>
+                    <option value="high">High (Physically demanding)</option>
+                  </select>
+                </div>
+
+                {/* Work Schedule Filter */}
+                <div>
+                  <label className="block text-sm font-medium mb-2">Work Schedule</label>
+                  <select
+                    value={workSchedule}
+                    onChange={(e) => setWorkSchedule(e.target.value)}
+                    className="w-full px-3 py-2 bg-surface-light border border-surface-light rounded-lg text-text-primary"
+                  >
+                    <option value="all">Any Schedule</option>
+                    <option value="regular">Regular Hours (M-F)</option>
+                    <option value="shifts">Shift Work</option>
+                    <option value="flexible">Flexible</option>
+                    <option value="oncall">On-Call</option>
+                  </select>
+                </div>
+
+                {/* Reset Button */}
+                <div className="flex items-end">
+                  <button
+                    onClick={() => {
+                      setMinSalary(0);
+                      setMaxTrainingMonths(60);
+                      setTrainingCost("all");
+                      setPhysicalDemand("all");
+                      setWorkSchedule("all");
+                    }}
+                    className="px-4 py-2 bg-surface-light hover:bg-surface text-text-secondary rounded-lg transition-colors text-sm"
+                  >
+                    Reset Filters
+                  </button>
+                </div>
+              </div>
+
+              {/* Results Count */}
+              <div className="mb-4 text-text-secondary text-sm">
+                Showing {filteredCareers.length} of {careerComparisons.length} careers
+              </div>
+
+              {/* Filtered Career Cards */}
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filteredCareers.map((career) => (
+                  <div
+                    key={career.id}
+                    className="bg-surface-light rounded-lg p-4 border border-surface-light hover:border-primary/50 transition-colors"
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-2xl" dangerouslySetInnerHTML={{ __html: career.icon }} />
+                      <div>
+                        <h3 className="font-semibold">{career.name}</h3>
+                        <span className="text-primary font-medium text-sm">
+                          {career.salaryRange}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2 text-xs">
+                      <div className="flex justify-between">
+                        <span className="text-text-muted">Training:</span>
+                        <span className="text-text-primary">{career.trainingDesc}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-text-muted">Cost:</span>
+                        <span className={`${career.trainingCost === "free" ? "text-green-400" : "text-text-primary"}`}>
+                          {career.trainingCostDesc}
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-text-muted">Job Growth:</span>
+                        <span className="text-success">+{career.jobGrowth}%</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-text-muted">Shortage:</span>
+                        <span className="text-red-400 text-right">{career.shortage}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-2 mt-3 pt-3 border-t border-surface">
+                      <span className={`px-2 py-0.5 rounded text-xs ${
+                        career.physicalDemand === "low" ? "bg-blue-500/20 text-blue-400" :
+                        career.physicalDemand === "medium" ? "bg-yellow-500/20 text-yellow-400" :
+                        "bg-orange-500/20 text-orange-400"
+                      }`}>
+                        {career.physicalDemand} physical
+                      </span>
+                      <span className="px-2 py-0.5 rounded text-xs bg-surface text-text-muted">
+                        {career.workSchedule === "regular" ? "M-F" :
+                         career.workSchedule === "shifts" ? "Shifts" :
+                         career.workSchedule === "flexible" ? "Flexible" : "On-call"}
+                      </span>
+                    </div>
+
+                    <Link
+                      href={`/programs?career=${career.id}`}
+                      className="block mt-3 text-center text-primary hover:underline text-sm"
+                    >
+                      View Programs &rarr;
+                    </Link>
+                  </div>
+                ))}
+              </div>
+
+              {filteredCareers.length === 0 && (
+                <div className="text-center py-8 text-text-secondary">
+                  No careers match your current filters. Try adjusting your preferences.
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* Career Library */}
       <section className="py-12 px-4">

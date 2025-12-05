@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { careerPaths, CareerPath } from "@/lib/quizData";
+import { shortageStatistics, newsItems } from "@/lib/shortageData";
 
 export default function Home() {
   const featuredCareers: CareerPath[] = [
@@ -178,8 +179,101 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How It Works Section */}
+      {/* Worker Shortage Crisis Section */}
+      <section className="bg-gradient-to-br from-red-950/30 via-background to-background py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-1 bg-red-500/20 text-red-400 rounded-full text-sm font-medium mb-4">
+              Urgent Need
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+              America&apos;s Worker Shortage Crisis
+            </h2>
+            <p className="text-text-secondary max-w-2xl mx-auto">
+              These industries are desperately seeking workers. Your skills are needed now more than ever.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+            {shortageStatistics.slice(0, 10).map((stat, index) => (
+              <a
+                key={index}
+                href={stat.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-surface rounded-xl p-5 border border-surface-light hover:border-red-500/50 transition-all group"
+              >
+                <div className="text-3xl mb-3" dangerouslySetInnerHTML={{ __html: stat.icon }} />
+                <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">
+                  {stat.career}
+                </h3>
+                <div className="text-red-400 font-bold text-lg mb-2">
+                  {stat.shortage}
+                </div>
+                <p className="text-text-secondary text-xs mb-2">
+                  {stat.keyFact}
+                </p>
+                <div className="text-text-muted text-xs">
+                  Source: {stat.source} ({stat.year})
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* News Feed Section */}
       <section className="bg-surface py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h2 className="font-display text-2xl md:text-3xl font-bold">
+                Latest Workforce News
+              </h2>
+              <p className="text-text-secondary mt-1">
+                Headlines highlighting the urgent need for skilled workers
+              </p>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {newsItems.slice(0, 8).map((news, index) => (
+              <a
+                key={index}
+                href={news.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-surface-light rounded-lg p-5 hover:bg-surface transition-colors group block"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <span className={`px-2 py-0.5 rounded text-xs font-medium ${
+                    news.category === "construction" ? "bg-orange-500/20 text-orange-400" :
+                    news.category === "healthcare" ? "bg-blue-500/20 text-blue-400" :
+                    news.category === "emergency" ? "bg-red-500/20 text-red-400" :
+                    news.category === "manufacturing" ? "bg-purple-500/20 text-purple-400" :
+                    "bg-gray-500/20 text-gray-400"
+                  }`}>
+                    {news.category}
+                  </span>
+                  <span className="text-text-muted text-xs">{news.date}</span>
+                </div>
+                <h3 className="font-semibold text-sm mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                  {news.title}
+                </h3>
+                <p className="text-text-secondary text-xs line-clamp-3 mb-2">
+                  {news.summary}
+                </p>
+                <div className="text-text-muted text-xs">
+                  {news.source} &rarr;
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-center mb-12">
             Find Your Path in 3 Steps
