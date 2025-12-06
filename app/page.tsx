@@ -415,7 +415,8 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-surface-light mt-8 pt-8 text-center text-text-muted text-sm">
-            &copy; 2025 Degree2Trade. All rights reserved.
+            <p>&copy; 2025 Degree2Trade. All rights reserved.</p>
+            <p className="mt-2 text-xs">Build {process.env.NEXT_PUBLIC_BUILD_ID || 'dev'}</p>
           </div>
         </div>
       </footer>

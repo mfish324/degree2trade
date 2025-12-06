@@ -148,9 +148,9 @@ export default function QuizPage() {
             <button
               key={index}
               onClick={() => handleAnswer(index)}
-              className={`w-full flex items-center gap-4 p-4 ${theme.tileBg} border ${theme.tileBorder} rounded-lg transition-all duration-200 text-left group`}
+              className={`w-full flex items-center gap-4 p-4 bg-slate-800/80 border border-slate-700/50 rounded-lg transition-all duration-200 text-left group hover:bg-slate-700/60 hover:border-slate-600/50 focus:outline-none focus:ring-2 focus:ring-slate-500/50`}
             >
-              <div className={`w-10 h-10 rounded-full bg-surface-light flex items-center justify-center font-semibold text-text-secondary ${theme.letterBg} group-hover:text-white transition-colors shrink-0`}>
+              <div className={`w-10 h-10 rounded-full bg-surface-light flex items-center justify-center font-semibold text-text-secondary group-hover:bg-slate-600 group-hover:text-white transition-colors shrink-0`}>
                 {optionLetters[index]}
               </div>
               <span className="text-text-primary">{option.text}</span>
