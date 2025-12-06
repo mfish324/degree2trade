@@ -19,6 +19,7 @@ const initialScores: CareerScores = {
   police: 0,
   medicalTech: 0,
   religiousVocations: 0,
+  military: 0,
 };
 
 // Three color themes that cycle through questions
