@@ -240,10 +240,10 @@ function ResultsContent() {
 
                   <div className="mt-6 pt-4 border-t border-surface-light">
                     <Link
-                      href="/programs"
+                      href={`/programs?career=${careerKey}`}
                       className="inline-block bg-primary hover:bg-primary-hover text-white font-medium px-6 py-2 rounded-lg transition-colors text-sm"
                     >
-                      View Training Programs
+                      View {career.title} Programs
                     </Link>
                   </div>
                 </div>
