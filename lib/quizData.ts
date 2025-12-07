@@ -11,7 +11,8 @@ export type CareerPath =
   | "police"
   | "medicalTech"
   | "religiousVocations"
-  | "military";
+  | "military"
+  | "mechanic";
 
 // Quiz question interface
 export interface QuizOption {
@@ -61,7 +62,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Workshop or technical facility",
-        scores: { welder: 2, hvac: 2, electrician: 1, medicalTech: 1 },
+        scores: { welder: 2, hvac: 2, electrician: 1, medicalTech: 1, mechanic: 3 },
       },
       {
         text: "Public safety and community settings",
@@ -75,7 +76,7 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         text: "Hands-on troubleshooting and fixing",
-        scores: { electrician: 2, plumber: 2, hvac: 2, welder: 1 },
+        scores: { electrician: 2, plumber: 2, hvac: 2, welder: 1, mechanic: 3 },
       },
       {
         text: "Following medical protocols and procedures",
@@ -91,7 +92,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Technical analysis and systematic approaches",
-        scores: { medicalTech: 2, electrician: 1, hvac: 1, solar: 2 },
+        scores: { medicalTech: 2, electrician: 1, hvac: 1, solar: 2, mechanic: 2 },
       },
     ],
   },
@@ -101,11 +102,11 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         text: "Heavy lifting and physically demanding work",
-        scores: { firefighter: 2, plumber: 2, electrician: 1, welder: 2, military: 2 },
+        scores: { firefighter: 2, plumber: 2, electrician: 1, welder: 2, military: 2, mechanic: 1 },
       },
       {
         text: "Moderate physical activity throughout the day",
-        scores: { nurse: 2, emt: 1, hvac: 1, solar: 1, police: 1 },
+        scores: { nurse: 2, emt: 1, hvac: 1, solar: 1, police: 1, mechanic: 2 },
       },
       {
         text: "Mix of physical and sedentary work",
@@ -131,7 +132,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Hands-on problem solving and seeing tangible results",
-        scores: { electrician: 1, plumber: 1, hvac: 2, welder: 2, solar: 1 },
+        scores: { electrician: 1, plumber: 1, hvac: 2, welder: 2, solar: 1, mechanic: 3 },
       },
       {
         text: "Helping people in their most vulnerable moments",
@@ -147,7 +148,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Running my own business someday",
-        scores: { electrician: 1, plumber: 1, hvac: 1, welder: 1 },
+        scores: { electrician: 1, plumber: 1, hvac: 1, welder: 1, mechanic: 2 },
       },
     ],
   },
@@ -165,7 +166,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Prefer regular hours with some flexibility",
-        scores: { medicalTech: 2, solar: 1, welder: 1 },
+        scores: { medicalTech: 2, solar: 1, welder: 1, mechanic: 2 },
       },
       {
         text: "Strong preference for predictable schedule",
@@ -187,7 +188,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Medium-term - 6-18 months",
-        scores: { hvac: 2, welder: 2, police: 1, medicalTech: 1 },
+        scores: { hvac: 2, welder: 2, police: 1, medicalTech: 1, mechanic: 2 },
       },
       {
         text: "Longer commitment - 2-4 years for full credentials",
@@ -205,11 +206,11 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         text: "Very important - I want to own my own business",
-        scores: { electrician: 2, plumber: 2, hvac: 2, welder: 1 },
+        scores: { electrician: 2, plumber: 2, hvac: 2, welder: 1, mechanic: 2 },
       },
       {
         text: "Somewhat important - nice to have the option",
-        scores: { solar: 1, hvac: 1, electrician: 1 },
+        scores: { solar: 1, hvac: 1, electrician: 1, mechanic: 1 },
       },
       {
         text: "Not important - I prefer stable employment",
@@ -231,7 +232,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Interested, but prefer traditional trades",
-        scores: { electrician: 1, plumber: 1, hvac: 1, welder: 1 },
+        scores: { electrician: 1, plumber: 1, hvac: 1, welder: 1, mechanic: 2 },
       },
       {
         text: "Not particularly interested in tech-focused work",
@@ -249,7 +250,7 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         text: "Solving technical problems that keep society running",
-        scores: { electrician: 2, plumber: 2, hvac: 2, solar: 1 },
+        scores: { electrician: 2, plumber: 2, hvac: 2, solar: 1, mechanic: 2 },
       },
       {
         text: "Saving lives through medical intervention",
@@ -279,7 +280,7 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         text: "Fine with ongoing education and certifications",
-        scores: { nurse: 2, electrician: 1, hvac: 1, medicalTech: 1 },
+        scores: { nurse: 2, electrician: 1, hvac: 1, medicalTech: 1, mechanic: 1 },
       },
       {
         text: "Prefer clear licensing paths with defined endpoints",
@@ -331,7 +332,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Prefer working with systems and equipment",
-        scores: { welder: 2, solar: 1, medicalTech: 1, plumber: 1 },
+        scores: { welder: 2, solar: 1, medicalTech: 1, plumber: 1, mechanic: 3 },
       },
       {
         text: "Like both equally depending on the task",
@@ -353,7 +354,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Mostly solo work with occasional teamwork",
-        scores: { welder: 2, plumber: 1, hvac: 1 },
+        scores: { welder: 2, plumber: 1, hvac: 1, mechanic: 2 },
       },
       {
         text: "Faith community with shared mission",
@@ -379,7 +380,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Standard business hours (8-5)",
-        scores: { medicalTech: 1, welder: 1, solar: 1 },
+        scores: { medicalTech: 1, welder: 1, solar: 1, mechanic: 1 },
       },
       {
         text: "Flexible hours based on community needs",
@@ -405,7 +406,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "I prefer more independence in how I do my work",
-        scores: { electrician: 1, plumber: 1, hvac: 1, welder: 1 },
+        scores: { electrician: 1, plumber: 1, hvac: 1, welder: 1, mechanic: 2 },
       },
       {
         text: "I want to serve others but prefer civilian roles",
@@ -632,6 +633,25 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
       "Computer Science":
         "Your CS degree is highly valued for cyber warfare, intelligence, communications, and technology specialist roles.",
       Any: "College graduates can enter as officers with higher pay and leadership responsibilities. Your degree demonstrates the discipline and learning ability the military values.",
+    },
+  },
+  mechanic: {
+    title: "Mechanic / Technician",
+    salary: "$45,000-$75,000",
+    training: "6 months-2 years",
+    growth: "4%",
+    icon: "🔧",
+    tagline: "Keep machines running and industries moving",
+    description:
+      "Mechanics and technicians diagnose, repair, and maintain vehicles, aircraft, heavy equipment, and industrial machinery. Specializations include automotive, diesel, aerospace, marine, and industrial maintenance—all offering strong job security in essential industries.",
+    degreeAdvantages: {
+      Engineering:
+        "Your engineering background gives you deep understanding of mechanical systems, diagnostics, and the technical principles behind vehicle and equipment design.",
+      Business:
+        "Your business degree prepares you to run your own auto shop, fleet maintenance operation, or dealership service department.",
+      Physics:
+        "Your physics education provides strong foundations in thermodynamics, fluid dynamics, and mechanical principles used in engine and system diagnostics.",
+      Any: "Your degree demonstrates problem-solving ability and commitment to learning—skills that help you master complex diagnostic systems and advance to senior technician or management roles.",
     },
   },
 };
@@ -1107,6 +1127,46 @@ export const careerLibrary: Record<CareerPath, CareerLibraryInfo> = {
     prosAndCons: {
       pros: ["Full benefits (healthcare, housing, education)", "Job security and steady pay", "Valuable skills training", "GI Bill for education", "Sense of purpose and camaraderie"],
       cons: ["Risk of deployment to conflict zones", "Frequent relocations", "Time away from family", "Strict hierarchy and rules", "Physical demands"],
+    },
+  },
+  mechanic: {
+    dayInLife: [
+      "Diagnose mechanical issues using computerized diagnostic equipment",
+      "Repair and replace defective parts in engines, transmissions, and other systems",
+      "Perform routine maintenance like oil changes, brake inspections, and tune-ups",
+      "Test vehicles and equipment to ensure proper operation after repairs",
+      "Communicate with customers or fleet managers about needed repairs and costs",
+    ],
+    keySkills: [
+      "Mechanical aptitude and problem-solving",
+      "Computer diagnostic proficiency",
+      "Attention to detail and precision",
+      "Physical stamina (lifting, bending, standing)",
+      "Customer service and communication",
+    ],
+    certifications: [
+      "ASE Certifications (Automotive Service Excellence)",
+      "Manufacturer-specific certifications (Ford, GM, Toyota, etc.)",
+      "EPA 609 Certification (A/C refrigerants)",
+      "FAA Airframe & Powerplant (A&P) License (aerospace)",
+      "CDL (for heavy equipment/diesel mechanics)",
+    ],
+    careerPath: [
+      "Entry-level Technician / Lube Tech",
+      "General Service Technician",
+      "Certified Mechanic / Specialist",
+      "Master Technician",
+      "Shop Foreman / Service Manager / Business Owner",
+    ],
+    resources: [
+      { name: "Bureau of Labor Statistics - Auto Mechanics", url: "https://www.bls.gov/ooh/installation-maintenance-and-repair/automotive-service-technicians-and-mechanics.htm" },
+      { name: "ASE - Automotive Service Excellence", url: "https://www.ase.com" },
+      { name: "Bureau of Labor Statistics - Diesel Mechanics", url: "https://www.bls.gov/ooh/installation-maintenance-and-repair/diesel-service-technicians-and-mechanics.htm" },
+      { name: "FAA - Aircraft Mechanics", url: "https://www.faa.gov/mechanics" },
+    ],
+    prosAndCons: {
+      pros: ["Strong job demand across specialties", "Multiple career paths (auto, diesel, aerospace, marine)", "Can work independently or for dealerships/fleets", "Tangible problem-solving satisfaction", "Potential to own your own shop"],
+      cons: ["Physical demands (standing, lifting, cramped positions)", "Exposure to chemicals and fumes", "Keeping up with rapidly changing technology", "Tool investment can be expensive", "Some weekend/evening hours"],
     },
   },
 };
