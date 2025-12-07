@@ -363,22 +363,105 @@ function ProgramsContent() {
       <section className="py-8 px-4">
         <div className="max-w-6xl mx-auto">
           {filteredPrograms.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-text-secondary text-lg mb-4">
-                No programs match your filters.
-              </p>
-              <button
-                onClick={() => {
-                  setCareerFilter("all");
-                  setProgramTypeFilter("all");
-                  setSearchQuery("");
-                  setOnlineOnly(false);
-                }}
-                className="text-primary hover:underline"
-              >
-                Clear all filters
-              </button>
-            </div>
+            careerFilter === "military" ? (
+              <div className="max-w-2xl mx-auto">
+                <div className="bg-surface rounded-xl border border-surface-light p-8 text-center">
+                  <span className="text-5xl mb-4 block">🎖️</span>
+                  <h2 className="text-2xl font-bold mb-4">Military Service Recruitment</h2>
+                  <p className="text-text-secondary mb-6">
+                    Military careers don&apos;t require traditional training programs. Instead, you&apos;ll
+                    receive comprehensive training after enlisting. Visit the official recruitment
+                    sites below to learn about opportunities, benefits, and how to get started.
+                  </p>
+
+                  <div className="grid sm:grid-cols-2 gap-4 mb-8">
+                    <a
+                      href="https://www.goarmy.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-3 p-4 bg-surface-light hover:bg-primary/20 border border-surface-light hover:border-primary/50 rounded-lg transition-colors"
+                    >
+                      <span className="text-2xl">🪖</span>
+                      <span className="font-semibold">U.S. Army</span>
+                    </a>
+                    <a
+                      href="https://www.navy.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-3 p-4 bg-surface-light hover:bg-primary/20 border border-surface-light hover:border-primary/50 rounded-lg transition-colors"
+                    >
+                      <span className="text-2xl">⚓</span>
+                      <span className="font-semibold">U.S. Navy</span>
+                    </a>
+                    <a
+                      href="https://www.airforce.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-3 p-4 bg-surface-light hover:bg-primary/20 border border-surface-light hover:border-primary/50 rounded-lg transition-colors"
+                    >
+                      <span className="text-2xl">✈️</span>
+                      <span className="font-semibold">U.S. Air Force</span>
+                    </a>
+                    <a
+                      href="https://www.marines.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-3 p-4 bg-surface-light hover:bg-primary/20 border border-surface-light hover:border-primary/50 rounded-lg transition-colors"
+                    >
+                      <span className="text-2xl">🦅</span>
+                      <span className="font-semibold">U.S. Marines</span>
+                    </a>
+                    <a
+                      href="https://www.gocoastguard.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-3 p-4 bg-surface-light hover:bg-primary/20 border border-surface-light hover:border-primary/50 rounded-lg transition-colors"
+                    >
+                      <span className="text-2xl">🚢</span>
+                      <span className="font-semibold">U.S. Coast Guard</span>
+                    </a>
+                    <a
+                      href="https://www.spaceforce.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-3 p-4 bg-surface-light hover:bg-primary/20 border border-surface-light hover:border-primary/50 rounded-lg transition-colors"
+                    >
+                      <span className="text-2xl">🚀</span>
+                      <span className="font-semibold">U.S. Space Force</span>
+                    </a>
+                  </div>
+
+                  <div className="bg-primary/10 rounded-lg p-4 text-left">
+                    <h3 className="font-semibold text-primary mb-2">Benefits of Military Service</h3>
+                    <ul className="text-text-secondary text-sm space-y-1">
+                      <li>• Comprehensive healthcare coverage</li>
+                      <li>• Housing allowance or on-base housing</li>
+                      <li>• GI Bill for education (up to full tuition)</li>
+                      <li>• Valuable job training and certifications</li>
+                      <li>• Retirement benefits after 20 years</li>
+                      <li>• College graduates can enter as officers</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-text-secondary text-lg mb-4">
+                  No programs match your filters.
+                </p>
+                <button
+                  onClick={() => {
+                    setCareerFilter("all");
+                    setProgramTypeFilter("all");
+                    setSearchQuery("");
+                    setOnlineOnly(false);
+                  }}
+                  className="text-primary hover:underline"
+                >
+                  Clear all filters
+                </button>
+              </div>
+            )
           ) : (
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {filteredPrograms.map((program) => {
