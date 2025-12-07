@@ -53,7 +53,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Emergency scenes and high-pressure situations",
-        scores: { emt: 3, firefighter: 3, police: 2 },
+        scores: { emt: 3, firefighter: 3, police: 2, military: 2 },
       },
       {
         text: "Faith communities and places of worship",
@@ -83,7 +83,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Making quick decisions in crisis situations",
-        scores: { emt: 2, firefighter: 2, police: 2 },
+        scores: { emt: 2, firefighter: 2, police: 2, military: 2 },
       },
       {
         text: "Through counseling, listening, and supporting others",
@@ -101,7 +101,7 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         text: "Heavy lifting and physically demanding work",
-        scores: { firefighter: 2, plumber: 2, electrician: 1, welder: 2 },
+        scores: { firefighter: 2, plumber: 2, electrician: 1, welder: 2, military: 2 },
       },
       {
         text: "Moderate physical activity throughout the day",
@@ -117,7 +117,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Varied - different every day",
-        scores: { emt: 2, firefighter: 1, police: 2, electrician: 1 },
+        scores: { emt: 2, firefighter: 1, police: 2, electrician: 1, military: 1 },
       },
     ],
   },
@@ -135,7 +135,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Helping people in their most vulnerable moments",
-        scores: { emt: 2, firefighter: 2, nurse: 2, police: 1 },
+        scores: { emt: 2, firefighter: 2, nurse: 2, police: 1, military: 1 },
       },
       {
         text: "Spiritual growth and helping others find meaning",
@@ -157,7 +157,7 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         text: "I thrive on it - keeps things exciting",
-        scores: { emt: 2, firefighter: 2, police: 1 },
+        scores: { emt: 2, firefighter: 2, police: 1, military: 2 },
       },
       {
         text: "Acceptable as part of the job",
@@ -183,7 +183,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Short-term - 3-6 months of focused training",
-        scores: { firefighter: 2, police: 1, solar: 1 },
+        scores: { firefighter: 2, police: 1, solar: 1, military: 2 },
       },
       {
         text: "Medium-term - 6-18 months",
@@ -213,7 +213,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Not important - I prefer stable employment",
-        scores: { nurse: 1, police: 1, firefighter: 1, medicalTech: 1 },
+        scores: { nurse: 1, police: 1, firefighter: 1, medicalTech: 1, military: 2 },
       },
       {
         text: "I prefer mission-driven or nonprofit work",
@@ -257,7 +257,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         text: "Protecting communities and keeping people safe",
-        scores: { firefighter: 2, police: 3 },
+        scores: { firefighter: 2, police: 3, military: 2 },
       },
       {
         text: "Supporting people through life's challenges and transitions",
@@ -301,7 +301,7 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         text: "High - I'm comfortable with dangerous situations",
-        scores: { firefighter: 3, police: 2, emt: 1, welder: 1 },
+        scores: { firefighter: 3, police: 2, emt: 1, welder: 1, military: 3 },
       },
       {
         text: "Moderate - some risk is acceptable",
@@ -319,28 +319,6 @@ export const quizQuestions: QuizQuestion[] = [
   },
   {
     id: 12,
-    question: "How important is spiritual or faith-based work to you?",
-    options: [
-      {
-        text: "Not important - I prefer secular career paths",
-        scores: {},
-      },
-      {
-        text: "Somewhat important - I'd like meaning in my work",
-        scores: { religiousVocations: 1, nurse: 1, emt: 1 },
-      },
-      {
-        text: "Very important - faith guides my career choices",
-        scores: { religiousVocations: 3 },
-      },
-      {
-        text: "Essential - I feel called to serve in ministry",
-        scores: { religiousVocations: 5 },
-      },
-    ],
-  },
-  {
-    id: 13,
     question: "How do you feel about working directly with people vs. systems?",
     options: [
       {
@@ -362,12 +340,12 @@ export const quizQuestions: QuizQuestion[] = [
     ],
   },
   {
-    id: 14,
+    id: 13,
     question: "What type of workplace culture appeals to you?",
     options: [
       {
         text: "Tight-knit team with strong bonds",
-        scores: { firefighter: 2, police: 1, emt: 1 },
+        scores: { firefighter: 2, police: 1, emt: 1, military: 2 },
       },
       {
         text: "Collaborative but with independence",
@@ -388,7 +366,7 @@ export const quizQuestions: QuizQuestion[] = [
     ],
   },
   {
-    id: 15,
+    id: 14,
     question: "Which work schedule sounds most appealing?",
     options: [
       {
@@ -410,6 +388,32 @@ export const quizQuestions: QuizQuestion[] = [
       {
         text: "Rotating shifts or patrol-style work",
         scores: { police: 2, emt: 1 },
+      },
+    ],
+  },
+  {
+    id: 15,
+    question: "How do you feel about structure, discipline, and serving a larger mission?",
+    options: [
+      {
+        text: "I thrive with clear structure and chain of command",
+        scores: { military: 3, police: 2, firefighter: 1 },
+      },
+      {
+        text: "I value serving my country and national defense",
+        scores: { military: 4, police: 1, firefighter: 1 },
+      },
+      {
+        text: "I prefer more independence in how I do my work",
+        scores: { electrician: 1, plumber: 1, hvac: 1, welder: 1 },
+      },
+      {
+        text: "I want to serve others but prefer civilian roles",
+        scores: { nurse: 1, emt: 1, religiousVocations: 1, firefighter: 1 },
+      },
+      {
+        text: "Benefits like healthcare, housing, and education assistance are important to me",
+        scores: { military: 3, police: 1, firefighter: 1 },
       },
     ],
   },
