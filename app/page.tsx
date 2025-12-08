@@ -33,7 +33,7 @@ export default function Home() {
           <Link href="/" className="font-display text-xl font-bold text-primary">
             Degree2Trade
           </Link>
-          <nav className="flex gap-6 text-text-secondary text-sm">
+          <nav className="flex items-center gap-6 text-text-secondary text-sm">
             <Link href="/programs" className="hover:text-primary transition-colors">
               Programs
             </Link>
@@ -147,7 +147,7 @@ export default function Home() {
             Why Skilled Work? Why Now?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-surface rounded-lg p-6 border border-surface-light hover:border-primary/30 transition-colors">
+            <div className="bg-surface rounded-lg p-6 border border-surface-light">
               <div className="text-3xl mb-3">🤖</div>
               <h3 className="text-lg font-semibold mb-2">
                 AI Can&apos;t Replace a Plumber
@@ -157,7 +157,7 @@ export default function Home() {
                 the pipes, wire the buildings, and respond to emergencies.
               </p>
             </div>
-            <div className="bg-surface rounded-lg p-6 border border-surface-light hover:border-primary/30 transition-colors">
+            <div className="bg-surface rounded-lg p-6 border border-surface-light">
               <div className="text-3xl mb-3">👴</div>
               <h3 className="text-lg font-semibold mb-2">
                 Massive Retirement Wave
@@ -167,7 +167,7 @@ export default function Home() {
                 just to maintain current capacity.
               </p>
             </div>
-            <div className="bg-surface rounded-lg p-6 border border-surface-light hover:border-primary/30 transition-colors">
+            <div className="bg-surface rounded-lg p-6 border border-surface-light">
               <div className="text-3xl mb-3">🏗️</div>
               <h3 className="text-lg font-semibold mb-2">Infrastructure Boom</h3>
               <p className="text-text-secondary text-sm">
@@ -175,7 +175,7 @@ export default function Home() {
                 for skilled workers in construction and energy.
               </p>
             </div>
-            <div className="bg-surface rounded-lg p-6 border border-surface-light hover:border-primary/30 transition-colors">
+            <div className="bg-surface rounded-lg p-6 border border-surface-light">
               <div className="text-3xl mb-3">💰</div>
               <h3 className="text-lg font-semibold mb-2">Better Pay, Less Debt</h3>
               <p className="text-text-secondary text-sm">
@@ -331,17 +331,18 @@ export default function Home() {
             {featuredCareers.map((careerKey) => {
               const career = careerPaths[careerKey];
               return (
-                <div
+                <Link
                   key={careerKey}
-                  className="bg-surface rounded-lg p-5 border border-surface-light hover:border-primary/50 transition-colors"
+                  href={`/library#${careerKey}`}
+                  className="bg-surface rounded-lg p-5 border border-surface-light hover:border-primary/50 transition-colors block group"
                 >
                   <div className="text-3xl mb-2">{career.icon}</div>
-                  <h3 className="font-semibold mb-1">{career.title}</h3>
+                  <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">{career.title}</h3>
                   <p className="text-primary text-sm font-medium mb-1">
                     {career.salary}
                   </p>
                   <p className="text-text-muted text-xs">{career.training}</p>
-                </div>
+                </Link>
               );
             })}
           </div>

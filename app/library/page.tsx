@@ -665,7 +665,7 @@ export default function LibraryPage() {
       {/* Career Cards */}
       <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-4 items-start">
             {allCareers.map((careerKey) => {
               const career = careerPaths[careerKey];
               const library = careerLibrary[careerKey];
@@ -675,7 +675,8 @@ export default function LibraryPage() {
               return (
                 <div
                   key={careerKey}
-                  className={`bg-surface rounded-xl border overflow-hidden transition-colors ${
+                  id={careerKey}
+                  className={`bg-surface rounded-xl border overflow-hidden transition-colors scroll-mt-24 ${
                     isInCompare ? "border-primary" : "border-surface-light"
                   }`}
                 >
