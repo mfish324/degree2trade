@@ -316,15 +316,83 @@ const youtubeChannels = {
       thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_nLpqLVrX8Zx_YpJqWQTKmV7EwHqNLz=s176-c-k-c0x00ffffff-no-rj",
     },
   ],
+  mechanic: [
+    {
+      name: "South Main Auto Repair",
+      handle: "@SouthMainAutoRepairAvworwvr",
+      url: "https://www.youtube.com/@SouthMainAutoRepairAvworwvr",
+      subscribers: "900K+",
+      description: "Real-world auto diagnostics and repair from a working shop",
+      thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_nQGqKLM5PMhJvN2y_HRNe3dKRNxQp7bQoS=s176-c-k-c0x00ffffff-no-rj",
+    },
+    {
+      name: "ChrisFix",
+      handle: "@ChrisFix",
+      url: "https://www.youtube.com/@ChrisFix",
+      subscribers: "12M+",
+      description: "DIY car repair tutorials for beginners to advanced mechanics",
+      thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_kxPQpWdG6uP8SxYPV8dNg5gFSHbRvxFPM=s176-c-k-c0x00ffffff-no-rj",
+    },
+    {
+      name: "Scotty Kilmer",
+      handle: "@ScottyKilmer",
+      url: "https://www.youtube.com/@ScottyKilmer",
+      subscribers: "6M+",
+      description: "50+ years mechanic experience with tips, reviews, and car advice",
+      thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_mJ2pRlQ6pXhXjdL8Wt0vqA8NxgHbKVmRN=s176-c-k-c0x00ffffff-no-rj",
+    },
+    {
+      name: "Scanner Danner",
+      handle: "@ScannerDanner",
+      url: "https://www.youtube.com/@ScannerDanner",
+      subscribers: "500K+",
+      description: "Advanced automotive diagnostics and electrical troubleshooting",
+      thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_lBqVwKjqPRvDMxK8FqwEpJPLzxmHQF=s176-c-k-c0x00ffffff-no-rj",
+    },
+    {
+      name: "Diesel Creek",
+      handle: "@DieselCreek",
+      url: "https://www.youtube.com/@DieselCreek",
+      subscribers: "700K+",
+      description: "Heavy equipment and diesel machinery restoration and repair",
+      thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_kPqXLmNRf8vZJKqRH7cLvJqPmWdKQ=s176-c-k-c0x00ffffff-no-rj",
+    },
+  ],
 };
 
 type ChannelCategory = keyof typeof youtubeChannels;
 
 export default function LibraryPage() {
-  const [expandedCareer, setExpandedCareer] = useState<CareerPath | null>(null);
+  const [expandedCareers, setExpandedCareers] = useState<Set<CareerPath>>(new Set());
   const [selectedChannelCategory, setSelectedChannelCategory] = useState<ChannelCategory>("general");
+  const [compareList, setCompareList] = useState<CareerPath[]>([]);
+  const [showComparison, setShowComparison] = useState(false);
 
   const allCareers = Object.keys(careerPaths) as CareerPath[];
+
+  const toggleExpanded = (careerKey: CareerPath) => {
+    setExpandedCareers((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(careerKey)) {
+        newSet.delete(careerKey);
+      } else {
+        newSet.add(careerKey);
+      }
+      return newSet;
+    });
+  };
+
+  const toggleCompare = (careerKey: CareerPath) => {
+    setCompareList((prev) => {
+      if (prev.includes(careerKey)) {
+        return prev.filter((c) => c !== careerKey);
+      }
+      if (prev.length >= 3) {
+        return prev; // Max 3 careers
+      }
+      return [...prev, careerKey];
+    });
+  };
 
   const channelCategories: { key: ChannelCategory; label: string }[] = [
     { key: "general", label: "General Trades" },
@@ -332,6 +400,7 @@ export default function LibraryPage() {
     { key: "plumber", label: "Plumbing" },
     { key: "hvac", label: "HVAC" },
     { key: "welder", label: "Welding" },
+    { key: "mechanic", label: "Mechanic" },
     { key: "nurse", label: "Nursing" },
     { key: "emt", label: "EMS" },
     { key: "firefighter", label: "Fire" },
@@ -379,6 +448,220 @@ export default function LibraryPage() {
         </div>
       </section>
 
+      {/* Comparison Floating Bar */}
+      {compareList.length > 0 && !showComparison && (
+        <div className="fixed bottom-0 left-0 right-0 bg-surface border-t border-surface-light p-4 z-40 shadow-lg">
+          <div className="max-w-4xl mx-auto flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <span className="text-text-secondary text-sm">Comparing:</span>
+              <div className="flex gap-2">
+                {compareList.map((careerKey) => (
+                  <span
+                    key={careerKey}
+                    className="inline-flex items-center gap-1 px-3 py-1 bg-primary/20 text-primary rounded-full text-sm"
+                  >
+                    {careerPaths[careerKey].icon} {careerPaths[careerKey].title}
+                    <button
+                      onClick={() => toggleCompare(careerKey)}
+                      className="ml-1 hover:text-red-400"
+                    >
+                      &times;
+                    </button>
+                  </span>
+                ))}
+              </div>
+              {compareList.length < 3 && (
+                <span className="text-text-muted text-xs">
+                  (select up to {3 - compareList.length} more)
+                </span>
+              )}
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setCompareList([])}
+                className="px-4 py-2 text-text-secondary hover:text-text-primary text-sm"
+              >
+                Clear
+              </button>
+              <button
+                onClick={() => setShowComparison(true)}
+                disabled={compareList.length < 2}
+                className={`px-6 py-2 rounded-lg font-medium text-sm transition-colors ${
+                  compareList.length >= 2
+                    ? "bg-primary hover:bg-primary-hover text-white"
+                    : "bg-surface-light text-text-muted cursor-not-allowed"
+                }`}
+              >
+                Compare {compareList.length} Careers
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Comparison Modal */}
+      {showComparison && (
+        <div className="fixed inset-0 bg-black/70 z-50 flex items-start justify-center overflow-y-auto py-8">
+          <div className="bg-background rounded-xl border border-surface-light max-w-6xl w-full mx-4 my-auto">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b border-surface-light">
+              <h2 className="text-2xl font-bold">Career Comparison</h2>
+              <button
+                onClick={() => setShowComparison(false)}
+                className="text-text-secondary hover:text-text-primary text-2xl"
+              >
+                &times;
+              </button>
+            </div>
+
+            {/* Comparison Table */}
+            <div className="p-6 overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr>
+                    <th className="text-left p-3 bg-surface-light rounded-tl-lg"></th>
+                    {compareList.map((careerKey, idx) => (
+                      <th
+                        key={careerKey}
+                        className={`p-4 bg-surface-light text-center ${
+                          idx === compareList.length - 1 ? "rounded-tr-lg" : ""
+                        }`}
+                      >
+                        <div className="text-3xl mb-2">{careerPaths[careerKey].icon}</div>
+                        <div className="font-semibold">{careerPaths[careerKey].title}</div>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Salary */}
+                  <tr className="border-b border-surface-light">
+                    <td className="p-3 font-medium text-text-secondary">Salary Range</td>
+                    {compareList.map((careerKey) => (
+                      <td key={careerKey} className="p-3 text-center text-primary font-semibold">
+                        {careerPaths[careerKey].salary}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Training Time */}
+                  <tr className="border-b border-surface-light">
+                    <td className="p-3 font-medium text-text-secondary">Training Time</td>
+                    {compareList.map((careerKey) => (
+                      <td key={careerKey} className="p-3 text-center">
+                        {careerPaths[careerKey].training}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Job Growth */}
+                  <tr className="border-b border-surface-light">
+                    <td className="p-3 font-medium text-text-secondary">Job Growth</td>
+                    {compareList.map((careerKey) => (
+                      <td key={careerKey} className="p-3 text-center text-success">
+                        {careerPaths[careerKey].growth}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Certifications */}
+                  <tr className="border-b border-surface-light">
+                    <td className="p-3 font-medium text-text-secondary align-top">Key Certifications</td>
+                    {compareList.map((careerKey) => (
+                      <td key={careerKey} className="p-3 text-sm text-text-secondary">
+                        <ul className="space-y-1">
+                          {careerLibrary[careerKey].certifications.slice(0, 3).map((cert, i) => (
+                            <li key={i} className="flex items-start gap-1">
+                              <span className="text-yellow-400">&#9733;</span>
+                              {cert}
+                            </li>
+                          ))}
+                        </ul>
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Key Skills */}
+                  <tr className="border-b border-surface-light">
+                    <td className="p-3 font-medium text-text-secondary align-top">Key Skills</td>
+                    {compareList.map((careerKey) => (
+                      <td key={careerKey} className="p-3 text-sm text-text-secondary">
+                        <ul className="space-y-1">
+                          {careerLibrary[careerKey].keySkills.slice(0, 3).map((skill, i) => (
+                            <li key={i} className="flex items-start gap-1">
+                              <span className="text-green-400">&#10003;</span>
+                              {skill}
+                            </li>
+                          ))}
+                        </ul>
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Pros */}
+                  <tr className="border-b border-surface-light bg-green-500/5">
+                    <td className="p-3 font-medium text-green-400 align-top">Pros</td>
+                    {compareList.map((careerKey) => (
+                      <td key={careerKey} className="p-3 text-sm text-text-secondary">
+                        <ul className="space-y-1">
+                          {careerLibrary[careerKey].prosAndCons.pros.slice(0, 3).map((pro, i) => (
+                            <li key={i} className="flex items-start gap-1">
+                              <span className="text-green-400">+</span>
+                              {pro}
+                            </li>
+                          ))}
+                        </ul>
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Cons */}
+                  <tr className="bg-red-500/5">
+                    <td className="p-3 font-medium text-red-400 align-top rounded-bl-lg">Cons</td>
+                    {compareList.map((careerKey, idx) => (
+                      <td
+                        key={careerKey}
+                        className={`p-3 text-sm text-text-secondary ${
+                          idx === compareList.length - 1 ? "rounded-br-lg" : ""
+                        }`}
+                      >
+                        <ul className="space-y-1">
+                          {careerLibrary[careerKey].prosAndCons.cons.slice(0, 3).map((con, i) => (
+                            <li key={i} className="flex items-start gap-1">
+                              <span className="text-red-400">&minus;</span>
+                              {con}
+                            </li>
+                          ))}
+                        </ul>
+                      </td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="flex justify-between items-center p-6 border-t border-surface-light bg-surface">
+              <button
+                onClick={() => {
+                  setShowComparison(false);
+                  setCompareList([]);
+                }}
+                className="text-text-secondary hover:text-text-primary text-sm"
+              >
+                Clear &amp; Close
+              </button>
+              <button
+                onClick={() => setShowComparison(false)}
+                className="px-6 py-2 bg-primary hover:bg-primary-hover text-white rounded-lg font-medium"
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Career Cards */}
       <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto">
@@ -386,29 +669,49 @@ export default function LibraryPage() {
             {allCareers.map((careerKey) => {
               const career = careerPaths[careerKey];
               const library = careerLibrary[careerKey];
-              const isExpanded = expandedCareer === careerKey;
+              const isExpanded = expandedCareers.has(careerKey);
+              const isInCompare = compareList.includes(careerKey);
 
               return (
                 <div
                   key={careerKey}
-                  className="bg-surface rounded-xl border border-surface-light overflow-hidden"
+                  className={`bg-surface rounded-xl border overflow-hidden transition-colors ${
+                    isInCompare ? "border-primary" : "border-surface-light"
+                  }`}
                 >
                   {/* Accordion Header */}
-                  <button
-                    onClick={() => setExpandedCareer(isExpanded ? null : careerKey)}
-                    className="w-full flex items-center justify-between p-4 hover:bg-surface-light/50 transition-colors"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="text-3xl">{career.icon}</span>
-                      <div className="text-left">
-                        <span className="font-semibold text-lg block">{career.title}</span>
-                        <span className="text-text-secondary text-sm">{career.salary} &bull; {career.training}</span>
+                  <div className="flex items-center">
+                    <button
+                      onClick={() => toggleExpanded(careerKey)}
+                      className="flex-1 flex items-center justify-between p-4 hover:bg-surface-light/50 transition-colors"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-3xl">{career.icon}</span>
+                        <div className="text-left">
+                          <span className="font-semibold text-lg block">{career.title}</span>
+                          <span className="text-text-secondary text-sm">{career.salary} &bull; {career.training}</span>
+                        </div>
                       </div>
-                    </div>
-                    <span className={`text-2xl transition-transform ${isExpanded ? "rotate-180" : ""}`}>
-                      &#9660;
-                    </span>
-                  </button>
+                      <span className={`text-2xl transition-transform ${isExpanded ? "rotate-180" : ""}`}>
+                        &#9660;
+                      </span>
+                    </button>
+                    {/* Compare Checkbox */}
+                    <button
+                      onClick={() => toggleCompare(careerKey)}
+                      disabled={!isInCompare && compareList.length >= 3}
+                      className={`mr-4 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                        isInCompare
+                          ? "bg-primary text-white"
+                          : compareList.length >= 3
+                          ? "bg-surface-light text-text-muted cursor-not-allowed"
+                          : "bg-surface-light hover:bg-primary/20 text-text-secondary hover:text-primary"
+                      }`}
+                      title={compareList.length >= 3 && !isInCompare ? "Max 3 careers" : ""}
+                    >
+                      {isInCompare ? "✓ Compare" : "+ Compare"}
+                    </button>
+                  </div>
 
                   {/* Accordion Content */}
                   {isExpanded && (
@@ -563,10 +866,10 @@ export default function LibraryPage() {
       </section>
 
       {/* YouTube Channels Section */}
-      <section className="py-12 px-4 bg-gradient-to-br from-red-950/20 via-background to-background">
+      <section className="py-12 px-4 bg-gradient-to-br from-[#282828]/30 via-background to-background">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
-            <span className="inline-block px-4 py-1 bg-red-500/20 text-red-400 rounded-full text-sm font-medium mb-4">
+            <span className="text-[#FF0000] text-sm font-medium mb-4 block">
               Learn from the Pros
             </span>
             <h2 className="font-display text-2xl md:text-3xl font-bold mb-2">
@@ -585,7 +888,7 @@ export default function LibraryPage() {
                 onClick={() => setSelectedChannelCategory(cat.key)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   selectedChannelCategory === cat.key
-                    ? "bg-red-500 text-white"
+                    ? "bg-[#FF0000] text-white"
                     : "bg-surface hover:bg-surface-light text-text-secondary"
                 }`}
               >
@@ -602,7 +905,7 @@ export default function LibraryPage() {
                 href={channel.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-surface rounded-xl p-5 border border-surface-light hover:border-red-500/50 transition-all group flex gap-4"
+                className="bg-surface rounded-xl p-5 border border-surface-light hover:border-[#FF0000]/50 transition-all group flex gap-4"
               >
                 <div className="flex-shrink-0 w-14 h-14 rounded-full overflow-hidden bg-surface-light">
                   <img
@@ -613,13 +916,13 @@ export default function LibraryPage() {
                       // Fallback to YouTube icon if image fails
                       const target = e.target as HTMLImageElement;
                       target.style.display = 'none';
-                      target.parentElement!.innerHTML = `<div class="w-full h-full bg-red-500/20 flex items-center justify-center"><svg class="w-6 h-6 text-red-500" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>`;
+                      target.parentElement!.innerHTML = `<div class="w-full h-full bg-[#FF0000]/20 flex items-center justify-center"><svg class="w-6 h-6 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>`;
                     }}
                   />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-semibold group-hover:text-red-400 transition-colors truncate">
+                    <h3 className="font-semibold group-hover:text-[#FF0000] transition-colors truncate">
                       {channel.name}
                     </h3>
                     <span className="text-text-muted text-xs flex-shrink-0">

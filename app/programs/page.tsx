@@ -87,6 +87,66 @@ const programTypeNames: Record<string, string> = {
   certification: "Certification",
 };
 
+// Parse duration string to months for filtering
+function parseDurationToMonths(duration: string): number {
+  const lower = duration.toLowerCase();
+
+  // Handle weeks
+  const weeksMatch = lower.match(/(\d+)\s*weeks?/);
+  if (weeksMatch) {
+    return Math.ceil(parseInt(weeksMatch[1]) / 4);
+  }
+
+  // Handle months
+  const monthsMatch = lower.match(/(\d+)\s*months?/);
+  if (monthsMatch) {
+    return parseInt(monthsMatch[1]);
+  }
+
+  // Handle years
+  const yearsMatch = lower.match(/(\d+)\s*years?/);
+  if (yearsMatch) {
+    return parseInt(yearsMatch[1]) * 12;
+  }
+
+  // Handle ranges like "6-12 months" or "1-2 years"
+  const rangeMonths = lower.match(/(\d+)-(\d+)\s*months?/);
+  if (rangeMonths) {
+    return (parseInt(rangeMonths[1]) + parseInt(rangeMonths[2])) / 2;
+  }
+
+  const rangeYears = lower.match(/(\d+)-(\d+)\s*years?/);
+  if (rangeYears) {
+    return ((parseInt(rangeYears[1]) + parseInt(rangeYears[2])) / 2) * 12;
+  }
+
+  // Default to 12 months if unparseable
+  return 12;
+}
+
+// Parse cost string to number for filtering
+function parseCostToNumber(cost: string | null): number {
+  if (!cost) return 0;
+  const lower = cost.toLowerCase();
+
+  // Free or no cost
+  if (lower.includes("free") || lower.includes("paid") || lower.includes("$0") || lower.includes("earn while")) {
+    return 0;
+  }
+
+  // Extract numbers and handle K notation
+  const match = cost.match(/\$?([\d,]+)k?/i);
+  if (match) {
+    let amount = parseInt(match[1].replace(/,/g, ""));
+    if (lower.includes("k")) {
+      amount *= 1000;
+    }
+    return amount;
+  }
+
+  return 50000; // Default to mid-range if unparseable
+}
+
 function ProgramsContent() {
   const searchParams = useSearchParams();
   const [programs, setPrograms] = useState<Program[]>([]);
@@ -101,6 +161,8 @@ function ProgramsContent() {
   const [programTypeFilter, setProgramTypeFilter] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [onlineOnly, setOnlineOnly] = useState(false);
+  const [durationFilter, setDurationFilter] = useState<string>("all");
+  const [costFilter, setCostFilter] = useState<string>("all");
 
   // Location
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
@@ -195,6 +257,46 @@ function ProgramsContent() {
       );
     }
 
+    // Filter by duration
+    if (durationFilter !== "all") {
+      result = result.filter((p) => {
+        const months = parseDurationToMonths(p.duration);
+        switch (durationFilter) {
+          case "under6":
+            return months < 6;
+          case "6to12":
+            return months >= 6 && months <= 12;
+          case "1to2years":
+            return months > 12 && months <= 24;
+          case "over2years":
+            return months > 24;
+          default:
+            return true;
+        }
+      });
+    }
+
+    // Filter by cost
+    if (costFilter !== "all") {
+      result = result.filter((p) => {
+        const cost = parseCostToNumber(p.cost_estimate);
+        switch (costFilter) {
+          case "free":
+            return cost === 0;
+          case "under5k":
+            return cost > 0 && cost < 5000;
+          case "5kto15k":
+            return cost >= 5000 && cost <= 15000;
+          case "15kto30k":
+            return cost > 15000 && cost <= 30000;
+          case "over30k":
+            return cost > 30000;
+          default:
+            return true;
+        }
+      });
+    }
+
     // Sort by distance if user location is available
     if (sortByDistance && userLocation) {
       result.sort((a, b) => {
@@ -209,7 +311,7 @@ function ProgramsContent() {
     }
 
     return result;
-  }, [programs, careerFilter, programTypeFilter, searchQuery, onlineOnly, sortByDistance, userLocation]);
+  }, [programs, careerFilter, programTypeFilter, searchQuery, onlineOnly, durationFilter, costFilter, sortByDistance, userLocation]);
 
   // Get unique program types from filtered results
   const availableProgramTypes = useMemo(() => {
@@ -330,6 +432,33 @@ function ProgramsContent() {
                   {programTypeNames[type] || type}
                 </option>
               ))}
+            </select>
+
+            {/* Duration Filter */}
+            <select
+              value={durationFilter}
+              onChange={(e) => setDurationFilter(e.target.value)}
+              className="px-4 py-2 bg-surface border border-surface-light rounded-lg text-text-primary focus:outline-none focus:border-primary"
+            >
+              <option value="all">Any Duration</option>
+              <option value="under6">Under 6 months</option>
+              <option value="6to12">6-12 months</option>
+              <option value="1to2years">1-2 years</option>
+              <option value="over2years">Over 2 years</option>
+            </select>
+
+            {/* Cost Filter */}
+            <select
+              value={costFilter}
+              onChange={(e) => setCostFilter(e.target.value)}
+              className="px-4 py-2 bg-surface border border-surface-light rounded-lg text-text-primary focus:outline-none focus:border-primary"
+            >
+              <option value="all">Any Cost</option>
+              <option value="free">Free / Paid Training</option>
+              <option value="under5k">Under $5,000</option>
+              <option value="5kto15k">$5,000 - $15,000</option>
+              <option value="15kto30k">$15,000 - $30,000</option>
+              <option value="over30k">Over $30,000</option>
             </select>
 
             {/* Online/Hybrid Toggle */}
@@ -455,6 +584,8 @@ function ProgramsContent() {
                     setProgramTypeFilter("all");
                     setSearchQuery("");
                     setOnlineOnly(false);
+                    setDurationFilter("all");
+                    setCostFilter("all");
                   }}
                   className="text-primary hover:underline"
                 >

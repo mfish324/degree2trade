@@ -229,17 +229,17 @@ export default function FinancialAidPage() {
           <p className="text-text-secondary text-lg mb-6">
             Don&apos;t let cost hold you back. Discover grants, scholarships, and programs that can pay for your training.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <div className="bg-surface rounded-lg px-6 py-3 border border-surface-light">
-              <div className="text-2xl font-bold text-primary">$0</div>
+          <div className="flex flex-wrap justify-center gap-8 md:gap-12">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary">$0</div>
               <div className="text-text-muted text-sm">Apprenticeship tuition</div>
             </div>
-            <div className="bg-surface rounded-lg px-6 py-3 border border-surface-light">
-              <div className="text-2xl font-bold text-primary">$7,395</div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary">$7,395</div>
               <div className="text-text-muted text-sm">Max Pell Grant 2024-25</div>
             </div>
-            <div className="bg-surface rounded-lg px-6 py-3 border border-surface-light">
-              <div className="text-2xl font-bold text-primary">100%</div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary">100%</div>
               <div className="text-text-muted text-sm">GI Bill tuition coverage</div>
             </div>
           </div>
@@ -283,7 +283,7 @@ export default function FinancialAidPage() {
                       <h3 className="font-semibold text-text-primary">{item.name}</h3>
                     </div>
                     {item.highlight && (
-                      <div className="inline-block px-3 py-1 bg-primary/20 text-primary rounded-full text-xs font-medium mb-3">
+                      <div className="text-primary text-xs font-medium mb-3">
                         {item.highlight}
                       </div>
                     )}
@@ -312,21 +312,21 @@ export default function FinancialAidPage() {
             <div className="bg-red-500/10 rounded-xl p-6 border border-red-500/20">
               <h3 className="text-xl font-bold text-red-400 mb-4">4-Year College</h3>
               <ul className="space-y-3">
-                <li className="flex items-start gap-2 text-text-secondary">
-                  <span className="text-red-400 mt-1">&minus;</span>
-                  Average debt: $37,000+
+                <li className="flex items-baseline gap-2 text-text-secondary">
+                  <span className="text-red-400 font-bold text-lg leading-none">&minus;</span>
+                  <span>Average debt: $37,000+</span>
                 </li>
-                <li className="flex items-start gap-2 text-text-secondary">
-                  <span className="text-red-400 mt-1">&minus;</span>
-                  4+ years before earning potential
+                <li className="flex items-baseline gap-2 text-text-secondary">
+                  <span className="text-red-400 font-bold text-lg leading-none">&minus;</span>
+                  <span>4+ years before earning potential</span>
                 </li>
-                <li className="flex items-start gap-2 text-text-secondary">
-                  <span className="text-red-400 mt-1">&minus;</span>
-                  40% of grads are underemployed
+                <li className="flex items-baseline gap-2 text-text-secondary">
+                  <span className="text-red-400 font-bold text-lg leading-none">&minus;</span>
+                  <span>40% of grads are underemployed</span>
                 </li>
-                <li className="flex items-start gap-2 text-text-secondary">
-                  <span className="text-red-400 mt-1">&minus;</span>
-                  No guarantee of job placement
+                <li className="flex items-baseline gap-2 text-text-secondary">
+                  <span className="text-red-400 font-bold text-lg leading-none">&minus;</span>
+                  <span>No guarantee of job placement</span>
                 </li>
               </ul>
             </div>
@@ -334,21 +334,21 @@ export default function FinancialAidPage() {
             <div className="bg-green-500/10 rounded-xl p-6 border border-green-500/20">
               <h3 className="text-xl font-bold text-green-400 mb-4">Trade Training</h3>
               <ul className="space-y-3">
-                <li className="flex items-start gap-2 text-text-secondary">
-                  <span className="text-green-400 mt-1">+</span>
-                  Often free or employer-paid
+                <li className="flex items-baseline gap-2 text-text-secondary">
+                  <span className="text-green-400 font-bold text-lg leading-none">+</span>
+                  <span>Often free or employer-paid</span>
                 </li>
-                <li className="flex items-start gap-2 text-text-secondary">
-                  <span className="text-green-400 mt-1">+</span>
-                  Earn $15-30/hr from day one
+                <li className="flex items-baseline gap-2 text-text-secondary">
+                  <span className="text-green-400 font-bold text-lg leading-none">+</span>
+                  <span>Earn $15-30/hr from day one</span>
                 </li>
-                <li className="flex items-start gap-2 text-text-secondary">
-                  <span className="text-green-400 mt-1">+</span>
-                  High demand = job security
+                <li className="flex items-baseline gap-2 text-text-secondary">
+                  <span className="text-green-400 font-bold text-lg leading-none">+</span>
+                  <span>High demand = job security</span>
                 </li>
-                <li className="flex items-start gap-2 text-text-secondary">
-                  <span className="text-green-400 mt-1">+</span>
-                  Clear path to $60-100k+ salaries
+                <li className="flex items-baseline gap-2 text-text-secondary">
+                  <span className="text-green-400 font-bold text-lg leading-none">+</span>
+                  <span>Clear path to $60-100k+ salaries</span>
                 </li>
               </ul>
             </div>
