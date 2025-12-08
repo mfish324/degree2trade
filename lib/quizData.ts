@@ -57,10 +57,6 @@ export const quizQuestions: QuizQuestion[] = [
         scores: { emt: 3, firefighter: 3, police: 2, military: 2 },
       },
       {
-        text: "Faith communities and places of worship",
-        scores: { religiousVocations: 3 },
-      },
-      {
         text: "Workshop or technical facility",
         scores: { welder: 2, hvac: 2, electrician: 1, medicalTech: 1, mechanic: 3 },
       },
@@ -133,10 +129,6 @@ export const quizQuestions: QuizQuestion[] = [
       {
         text: "Hands-on problem solving and seeing tangible results",
         scores: { electrician: 1, plumber: 1, hvac: 2, welder: 2, solar: 1, mechanic: 3 },
-      },
-      {
-        text: "Helping people in their most vulnerable moments",
-        scores: { emt: 2, firefighter: 2, nurse: 2, police: 1, military: 1 },
       },
       {
         text: "Spiritual growth and helping others find meaning",
@@ -224,19 +216,19 @@ export const quizQuestions: QuizQuestion[] = [
   },
   {
     id: 8,
-    question: "How do you feel about technology and renewable energy?",
+    question: "How comfortable are you working with technology and modern equipment?",
     options: [
       {
-        text: "Very interested - I want to work in growing green industries",
-        scores: { solar: 3, electrician: 1 },
+        text: "Very comfortable - I enjoy learning new systems and technology",
+        scores: { electrician: 2, hvac: 1, medicalTech: 2 },
       },
       {
-        text: "Interested, but prefer traditional trades",
-        scores: { electrician: 1, plumber: 1, hvac: 1, welder: 1, mechanic: 2 },
+        text: "Comfortable with tech, but I prefer hands-on mechanical work",
+        scores: { mechanic: 2, plumber: 1, hvac: 1, welder: 1 },
       },
       {
-        text: "Not particularly interested in tech-focused work",
-        scores: { plumber: 1, firefighter: 1, police: 1 },
+        text: "I prefer work that doesn't require much technology",
+        scores: { plumber: 1, welder: 1, firefighter: 1 },
       },
       {
         text: "Technology is a tool, but people are my focus",

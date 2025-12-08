@@ -275,12 +275,15 @@ export default function FinancialAidPage() {
               </h2>
               <div className="grid md:grid-cols-3 gap-6">
                 {category.items.map((item, itemIndex) => (
-                  <div
+                  <a
                     key={itemIndex}
-                    className="bg-surface rounded-xl border border-surface-light p-6 hover:border-primary/50 transition-colors"
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-surface rounded-xl border border-surface-light p-6 hover:border-primary/50 transition-colors block group"
                   >
                     <div className="flex items-start justify-between mb-3">
-                      <h3 className="font-semibold text-text-primary">{item.name}</h3>
+                      <h3 className="font-semibold text-text-primary group-hover:text-primary transition-colors">{item.name}</h3>
                     </div>
                     {item.highlight && (
                       <div className="text-primary text-xs font-medium mb-3">
@@ -288,15 +291,10 @@ export default function FinancialAidPage() {
                       </div>
                     )}
                     <p className="text-text-secondary text-sm mb-4">{item.description}</p>
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-primary hover:underline text-sm font-medium"
-                    >
+                    <span className="inline-flex items-center gap-2 text-primary group-hover:underline text-sm font-medium">
                       Learn More &rarr;
-                    </a>
-                  </div>
+                    </span>
+                  </a>
                 ))}
               </div>
             </div>
