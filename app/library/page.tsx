@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   CareerPath,
@@ -370,6 +370,14 @@ export default function LibraryPage() {
 
   const allCareers = Object.keys(careerPaths) as CareerPath[];
 
+  // Auto-expand career from URL hash (when clicking from homepage)
+  useEffect(() => {
+    const hash = window.location.hash.slice(1); // Remove the #
+    if (hash && allCareers.includes(hash as CareerPath)) {
+      setExpandedCareers(new Set([hash as CareerPath]));
+    }
+  }, []);
+
   const toggleExpanded = (careerKey: CareerPath) => {
     setExpandedCareers((prev) => {
       const newSet = new Set(prev);
@@ -419,7 +427,7 @@ export default function LibraryPage() {
           <Link href="/" className="font-display text-xl font-bold text-primary">
             Degree2Trade
           </Link>
-          <nav className="flex gap-6 text-text-secondary text-sm">
+          <nav className="flex items-center gap-6 text-text-secondary text-sm">
             <Link href="/programs" className="hover:text-primary transition-colors">
               Programs
             </Link>

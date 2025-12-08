@@ -11,7 +11,16 @@
       "Bash(npx supabase:*)",
       "Bash(node:*)",
       "Bash(powershell -Command \"Get-Process -Name node -ErrorAction SilentlyContinue | Stop-Process -Force\")",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh repo create:*)",
+      "Bash(gh auth login:*)",
+      "Bash(npx vercel:*)",
+      "Bash(git push:*)",
+      "Bash(gh issue create:*)",
+      "Bash(tree:*)",
+      "Bash(find:*)",
+      "Bash(wc:*)"
     ],
     "deny": [],
     "ask": []

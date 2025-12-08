@@ -356,7 +356,7 @@ function ProgramsContent() {
           <Link href="/" className="font-display text-xl font-bold text-primary">
             Degree2Trade
           </Link>
-          <nav className="flex gap-6 text-text-secondary text-sm">
+          <nav className="flex items-center gap-6 text-text-secondary text-sm">
             <Link href="/programs" className="text-primary">
               Programs
             </Link>
