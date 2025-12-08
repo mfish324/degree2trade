@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { TextWithAcronyms } from "@/components/Acronym";
 
 const financialAidResources = [
   {
@@ -256,8 +259,12 @@ export default function FinancialAidPage() {
                 <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-sm font-bold mb-3">
                   {index + 1}
                 </div>
-                <h3 className="font-semibold mb-2 text-sm">{tip.title}</h3>
-                <p className="text-text-secondary text-xs">{tip.description}</p>
+                <h3 className="font-semibold mb-2 text-sm">
+                  <TextWithAcronyms text={tip.title} />
+                </h3>
+                <p className="text-text-secondary text-xs">
+                  <TextWithAcronyms text={tip.description} />
+                </p>
               </div>
             ))}
           </div>
@@ -283,14 +290,18 @@ export default function FinancialAidPage() {
                     className="bg-surface rounded-xl border border-surface-light p-6 hover:border-primary/50 transition-colors block group"
                   >
                     <div className="flex items-start justify-between mb-3">
-                      <h3 className="font-semibold text-text-primary group-hover:text-primary transition-colors">{item.name}</h3>
+                      <h3 className="font-semibold text-text-primary group-hover:text-primary transition-colors">
+                        <TextWithAcronyms text={item.name} />
+                      </h3>
                     </div>
                     {item.highlight && (
                       <div className="text-primary text-xs font-medium mb-3">
                         {item.highlight}
                       </div>
                     )}
-                    <p className="text-text-secondary text-sm mb-4">{item.description}</p>
+                    <p className="text-text-secondary text-sm mb-4">
+                      <TextWithAcronyms text={item.description} />
+                    </p>
                     <span className="inline-flex items-center gap-2 text-primary group-hover:underline text-sm font-medium">
                       Learn More &rarr;
                     </span>

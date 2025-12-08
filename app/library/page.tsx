@@ -7,6 +7,7 @@ import {
   careerPaths,
   careerLibrary,
 } from "@/lib/quizData";
+import { TextWithAcronyms } from "@/components/Acronym";
 
 // YouTube Channel Data with thumbnails
 const youtubeChannels = {
@@ -581,7 +582,7 @@ export default function LibraryPage() {
                           {careerLibrary[careerKey].certifications.slice(0, 3).map((cert, i) => (
                             <li key={i} className="flex items-start gap-1">
                               <span className="text-yellow-400">&#9733;</span>
-                              {cert}
+                              <TextWithAcronyms text={cert} />
                             </li>
                           ))}
                         </ul>
@@ -598,7 +599,7 @@ export default function LibraryPage() {
                           {careerLibrary[careerKey].keySkills.slice(0, 3).map((skill, i) => (
                             <li key={i} className="flex items-start gap-1">
                               <span className="text-green-400">&#10003;</span>
-                              {skill}
+                              <TextWithAcronyms text={skill} />
                             </li>
                           ))}
                         </ul>
@@ -727,7 +728,9 @@ export default function LibraryPage() {
                     <div className="px-4 pb-6 border-t border-surface-light">
                       {/* Career Overview */}
                       <div className="mt-6 mb-6">
-                        <p className="text-text-secondary">{career.description}</p>
+                        <p className="text-text-secondary">
+                          <TextWithAcronyms text={career.description} />
+                        </p>
                         <div className="grid grid-cols-3 gap-4 mt-4">
                           <div className="text-center p-3 bg-surface-light rounded-lg">
                             <div className="text-primary font-semibold">{career.salary}</div>
@@ -753,7 +756,7 @@ export default function LibraryPage() {
                           {library.dayInLife.map((item, i) => (
                             <li key={i} className="flex items-start gap-2 text-text-secondary text-sm">
                               <span className="text-primary mt-1">&bull;</span>
-                              {item}
+                              <TextWithAcronyms text={item} />
                             </li>
                           ))}
                         </ul>
@@ -769,7 +772,7 @@ export default function LibraryPage() {
                             {library.keySkills.map((skill, i) => (
                               <li key={i} className="flex items-start gap-2 text-text-secondary text-sm">
                                 <span className="text-green-400 mt-1">&#10003;</span>
-                                {skill}
+                                <TextWithAcronyms text={skill} />
                               </li>
                             ))}
                           </ul>
@@ -783,7 +786,7 @@ export default function LibraryPage() {
                             {library.certifications.map((cert, i) => (
                               <li key={i} className="flex items-start gap-2 text-text-secondary text-sm">
                                 <span className="text-yellow-400 mt-1">&#9733;</span>
-                                {cert}
+                                <TextWithAcronyms text={cert} />
                               </li>
                             ))}
                           </ul>
