@@ -8,6 +8,7 @@ import {
   careerLibrary,
 } from "@/lib/quizData";
 import { TextWithAcronyms } from "@/components/Acronym";
+import { ResponsiveAd, InContentAd } from "@/components/AdPlaceholder";
 
 // YouTube Channel Data with thumbnails
 const youtubeChannels = {
@@ -457,6 +458,11 @@ export default function LibraryPage() {
         </div>
       </section>
 
+      {/* Ad - Below Hero */}
+      <div className="py-6 flex justify-center border-b border-surface-light">
+        <ResponsiveAd desktopSize="leaderboard" mobileSize="mobile-banner" />
+      </div>
+
       {/* Comparison Floating Bar */}
       {compareList.length > 0 && !showComparison && (
         <div className="fixed bottom-0 left-0 right-0 bg-surface border-t border-surface-light p-4 z-40 shadow-lg">
@@ -877,6 +883,9 @@ export default function LibraryPage() {
         </div>
       </section>
 
+      {/* Ad - Between Career Cards and YouTube */}
+      <InContentAd />
+
       {/* YouTube Channels Section */}
       <section className="py-12 px-4 bg-gradient-to-br from-[#282828]/30 via-background to-background">
         <div className="max-w-4xl mx-auto">
@@ -951,6 +960,9 @@ export default function LibraryPage() {
           </div>
         </div>
       </section>
+
+      {/* Ad - Before CTA */}
+      <InContentAd />
 
       {/* CTA */}
       <section className="py-12 px-4 bg-surface">

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { TextWithAcronyms } from "@/components/Acronym";
+import { ResponsiveAd, InContentAd } from "@/components/AdPlaceholder";
 
 const financialAidResources = [
   {
@@ -249,6 +250,11 @@ export default function FinancialAidPage() {
         </div>
       </section>
 
+      {/* Ad - Below Hero */}
+      <div className="py-6 flex justify-center bg-surface">
+        <ResponsiveAd desktopSize="leaderboard" mobileSize="mobile-banner" />
+      </div>
+
       {/* Quick Tips */}
       <section className="py-8 px-4 bg-surface">
         <div className="max-w-6xl mx-auto">
@@ -313,6 +319,9 @@ export default function FinancialAidPage() {
         </div>
       </section>
 
+      {/* Ad - Mid Page */}
+      <InContentAd />
+
       {/* Comparison Section */}
       <section className="py-12 px-4 bg-surface">
         <div className="max-w-4xl mx-auto">
@@ -364,6 +373,9 @@ export default function FinancialAidPage() {
           </div>
         </div>
       </section>
+
+      {/* Ad - Before CTA */}
+      <InContentAd />
 
       {/* CTA */}
       <section className="py-12 px-4">

@@ -10,6 +10,7 @@ import {
   getDegreeAdvantage,
 } from "@/lib/quizData";
 import { careerComparisons } from "@/lib/shortageData";
+import { ResponsiveAd } from "@/components/AdPlaceholder";
 
 type CareerScores = Record<CareerPath, number>;
 
@@ -252,6 +253,11 @@ function ResultsContent() {
           </div>
         </div>
       </section>
+
+      {/* Ad - After Top Matches */}
+      <div className="py-6 flex justify-center">
+        <ResponsiveAd desktopSize="leaderboard" mobileSize="mobile-banner" />
+      </div>
 
       {/* Other Matches */}
       {otherMatches.length > 0 && (
@@ -655,6 +661,11 @@ function ResultsContent() {
           </div>
         </div>
       </section>
+
+      {/* Ad - Before Final CTA */}
+      <div className="py-6 flex justify-center">
+        <ResponsiveAd desktopSize="leaderboard" mobileSize="mobile-banner" />
+      </div>
 
       {/* Final CTA */}
       <section className="py-12 px-4 bg-surface">

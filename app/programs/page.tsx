@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { supabase, Program, CareerPathFilter } from "@/lib/supabase";
 import { careerPaths, CareerPath } from "@/lib/quizData";
+import { ResponsiveAd, InContentAd } from "@/components/AdPlaceholder";
 
 // US State coordinates for distance calculation
 const stateCoordinates: Record<string, { lat: number; lng: number }> = {
@@ -488,6 +489,11 @@ function ProgramsContent() {
         </div>
       </section>
 
+      {/* Ad - Below Filters */}
+      <div className="py-4 flex justify-center border-b border-surface-light">
+        <ResponsiveAd desktopSize="leaderboard" mobileSize="mobile-banner" />
+      </div>
+
       {/* Programs Grid */}
       <section className="py-8 px-4">
         <div className="max-w-6xl mx-auto">
@@ -699,6 +705,9 @@ function ProgramsContent() {
           )}
         </div>
       </section>
+
+      {/* Ad - Before CTA */}
+      <InContentAd />
 
       {/* Back to Quiz CTA */}
       <section className="py-12 px-4 bg-surface border-t border-surface-light">
