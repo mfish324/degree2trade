@@ -34,14 +34,17 @@ export default function Home() {
             Degree2Trade
           </Link>
           <nav className="flex items-center gap-6 text-text-secondary text-sm">
-            <Link href="/programs" className="hover:text-primary transition-colors">
+            <Link href="/programs" className="hover:text-primary transition-colors hidden md:block">
               Programs
             </Link>
-            <Link href="/library" className="hover:text-primary transition-colors">
+            <Link href="/library" className="hover:text-primary transition-colors hidden md:block">
               Career Library
             </Link>
-            <Link href="/financial-aid" className="hover:text-primary transition-colors">
-              Financial Aid
+            <Link href="/for-parents" className="hover:text-primary transition-colors hidden sm:block">
+              For Parents
+            </Link>
+            <Link href="/for-grads" className="hover:text-primary transition-colors hidden sm:block">
+              For Grads
             </Link>
             <Link href="/quiz" className="px-4 py-1.5 bg-primary hover:bg-primary-hover text-white rounded-lg transition-colors">
               Take Quiz
@@ -383,34 +386,22 @@ export default function Home() {
               <Link href="/about" className="hover:text-primary transition-colors">
                 About
               </Link>
-              <Link
-                href="/programs"
-                className="hover:text-primary transition-colors"
-              >
+              <Link href="/programs" className="hover:text-primary transition-colors">
                 Programs
               </Link>
-              <Link
-                href="/library"
-                className="hover:text-primary transition-colors"
-              >
+              <Link href="/library" className="hover:text-primary transition-colors">
                 Career Library
               </Link>
-              <Link
-                href="/financial-aid"
-                className="hover:text-primary transition-colors"
-              >
+              <Link href="/for-parents" className="hover:text-primary transition-colors">
+                For Parents
+              </Link>
+              <Link href="/for-grads" className="hover:text-primary transition-colors">
+                For Grads
+              </Link>
+              <Link href="/financial-aid" className="hover:text-primary transition-colors">
                 Financial Aid
               </Link>
-              <Link
-                href="/contact"
-                className="hover:text-primary transition-colors"
-              >
-                Contact
-              </Link>
-              <Link
-                href="/privacy"
-                className="hover:text-primary transition-colors"
-              >
+              <Link href="/privacy" className="hover:text-primary transition-colors">
                 Privacy
               </Link>
             </div>
