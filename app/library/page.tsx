@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import {
   CareerPath,
@@ -365,32 +365,11 @@ const youtubeChannels = {
 type ChannelCategory = keyof typeof youtubeChannels;
 
 export default function LibraryPage() {
-  const [expandedCareers, setExpandedCareers] = useState<Set<CareerPath>>(new Set());
   const [selectedChannelCategory, setSelectedChannelCategory] = useState<ChannelCategory>("general");
   const [compareList, setCompareList] = useState<CareerPath[]>([]);
   const [showComparison, setShowComparison] = useState(false);
 
   const allCareers = Object.keys(careerPaths) as CareerPath[];
-
-  // Auto-expand career from URL hash (when clicking from homepage)
-  useEffect(() => {
-    const hash = window.location.hash.slice(1); // Remove the #
-    if (hash && allCareers.includes(hash as CareerPath)) {
-      setExpandedCareers(new Set([hash as CareerPath]));
-    }
-  }, []);
-
-  const toggleExpanded = (careerKey: CareerPath) => {
-    setExpandedCareers((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(careerKey)) {
-        newSet.delete(careerKey);
-      } else {
-        newSet.add(careerKey);
-      }
-      return newSet;
-    });
-  };
 
   const toggleCompare = (careerKey: CareerPath) => {
     setCompareList((prev) => {
@@ -680,43 +659,52 @@ export default function LibraryPage() {
       {/* Career Cards */}
       <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-4 items-start">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {allCareers.map((careerKey) => {
               const career = careerPaths[careerKey];
-              const library = careerLibrary[careerKey];
-              const isExpanded = expandedCareers.has(careerKey);
               const isInCompare = compareList.includes(careerKey);
 
               return (
                 <div
                   key={careerKey}
                   id={careerKey}
-                  className={`bg-surface rounded-xl border overflow-hidden transition-colors scroll-mt-24 ${
+                  className={`bg-surface rounded-xl border overflow-hidden transition-colors ${
                     isInCompare ? "border-primary" : "border-surface-light"
                   }`}
                 >
-                  {/* Accordion Header */}
-                  <div className="flex items-center">
-                    <button
-                      onClick={() => toggleExpanded(careerKey)}
-                      className="flex-1 flex items-center justify-between p-4 hover:bg-surface-light/50 transition-colors"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="text-3xl">{career.icon}</span>
-                        <div className="text-left">
-                          <span className="font-semibold text-lg block">{career.title}</span>
-                          <span className="text-text-secondary text-sm">{career.salary} &bull; {career.training}</span>
+                  {/* Card Content */}
+                  <Link
+                    href={`/careers/${careerKey}`}
+                    className="block p-5 hover:bg-surface-light/50 transition-colors"
+                  >
+                    <div className="flex items-start gap-4">
+                      <span className="text-4xl">{career.icon}</span>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-lg mb-1">{career.title}</h3>
+                        <p className="text-text-secondary text-sm mb-3 line-clamp-2">
+                          {career.tagline}
+                        </p>
+                        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                          <span className="text-primary font-medium">{career.salary}</span>
+                          <span className="text-text-muted">{career.training}</span>
+                          <span className="text-success">{career.growth} growth</span>
                         </div>
                       </div>
-                      <span className={`text-2xl transition-transform ${isExpanded ? "rotate-180" : ""}`}>
-                        &#9660;
-                      </span>
-                    </button>
-                    {/* Compare Checkbox */}
+                    </div>
+                  </Link>
+
+                  {/* Card Footer */}
+                  <div className="px-5 py-3 border-t border-surface-light flex items-center justify-between bg-surface-light/30">
+                    <Link
+                      href={`/careers/${careerKey}`}
+                      className="text-primary text-sm font-medium hover:underline"
+                    >
+                      View Details &rarr;
+                    </Link>
                     <button
                       onClick={() => toggleCompare(careerKey)}
                       disabled={!isInCompare && compareList.length >= 3}
-                      className={`mr-4 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                      className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                         isInCompare
                           ? "bg-primary text-white"
                           : compareList.length >= 3
@@ -728,154 +716,6 @@ export default function LibraryPage() {
                       {isInCompare ? "✓ Compare" : "+ Compare"}
                     </button>
                   </div>
-
-                  {/* Accordion Content */}
-                  {isExpanded && (
-                    <div className="px-4 pb-6 border-t border-surface-light">
-                      {/* Career Overview */}
-                      <div className="mt-6 mb-6">
-                        <p className="text-text-secondary">
-                          <TextWithAcronyms text={career.description} />
-                        </p>
-                        <div className="grid grid-cols-3 gap-4 mt-4">
-                          <div className="text-center p-3 bg-surface-light rounded-lg">
-                            <div className="text-primary font-semibold">{career.salary}</div>
-                            <div className="text-text-muted text-xs">Salary Range</div>
-                          </div>
-                          <div className="text-center p-3 bg-surface-light rounded-lg">
-                            <div className="text-primary font-semibold">{career.training}</div>
-                            <div className="text-text-muted text-xs">Training Time</div>
-                          </div>
-                          <div className="text-center p-3 bg-surface-light rounded-lg">
-                            <div className="text-success font-semibold">{career.growth}</div>
-                            <div className="text-text-muted text-xs">Job Growth</div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Day in the Life */}
-                      <div className="mt-6">
-                        <h4 className="font-semibold text-primary mb-3 flex items-center gap-2">
-                          <span>&#128197;</span> A Day in the Life
-                        </h4>
-                        <ul className="space-y-2">
-                          {library.dayInLife.map((item, i) => (
-                            <li key={i} className="flex items-start gap-2 text-text-secondary text-sm">
-                              <span className="text-primary mt-1">&bull;</span>
-                              <TextWithAcronyms text={item} />
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Key Skills & Certifications */}
-                      <div className="grid md:grid-cols-2 gap-6 mt-6">
-                        <div>
-                          <h4 className="font-semibold text-primary mb-3 flex items-center gap-2">
-                            <span>&#128170;</span> Key Skills
-                          </h4>
-                          <ul className="space-y-2">
-                            {library.keySkills.map((skill, i) => (
-                              <li key={i} className="flex items-start gap-2 text-text-secondary text-sm">
-                                <span className="text-green-400 mt-1">&#10003;</span>
-                                <TextWithAcronyms text={skill} />
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        <div>
-                          <h4 className="font-semibold text-primary mb-3 flex items-center gap-2">
-                            <span>&#128220;</span> Certifications
-                          </h4>
-                          <ul className="space-y-2">
-                            {library.certifications.map((cert, i) => (
-                              <li key={i} className="flex items-start gap-2 text-text-secondary text-sm">
-                                <span className="text-yellow-400 mt-1">&#9733;</span>
-                                <TextWithAcronyms text={cert} />
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-
-                      {/* Career Path */}
-                      <div className="mt-6">
-                        <h4 className="font-semibold text-primary mb-3 flex items-center gap-2">
-                          <span>&#128200;</span> Career Progression
-                        </h4>
-                        <div className="flex flex-wrap items-center gap-2">
-                          {library.careerPath.map((step, i) => (
-                            <div key={i} className="flex items-center">
-                              <span className="px-3 py-1 bg-surface-light rounded-full text-sm text-text-primary">
-                                {step}
-                              </span>
-                              {i < library.careerPath.length - 1 && (
-                                <span className="mx-2 text-text-muted">&rarr;</span>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Pros and Cons */}
-                      <div className="grid md:grid-cols-2 gap-6 mt-6">
-                        <div className="bg-green-500/10 rounded-lg p-4">
-                          <h4 className="font-semibold text-green-400 mb-3">Pros</h4>
-                          <ul className="space-y-2">
-                            {library.prosAndCons.pros.map((pro, i) => (
-                              <li key={i} className="flex items-start gap-2 text-text-secondary text-sm">
-                                <span className="text-green-400">+</span>
-                                {pro}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        <div className="bg-red-500/10 rounded-lg p-4">
-                          <h4 className="font-semibold text-red-400 mb-3">Cons</h4>
-                          <ul className="space-y-2">
-                            {library.prosAndCons.cons.map((con, i) => (
-                              <li key={i} className="flex items-start gap-2 text-text-secondary text-sm">
-                                <span className="text-red-400">&minus;</span>
-                                {con}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-
-                      {/* Resources */}
-                      <div className="mt-6">
-                        <h4 className="font-semibold text-primary mb-3 flex items-center gap-2">
-                          <span>&#128279;</span> Learn More
-                        </h4>
-                        <div className="flex flex-wrap gap-3">
-                          {library.resources.map((resource, i) => (
-                            <a
-                              key={i}
-                              href={resource.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="px-4 py-2 bg-surface-light hover:bg-primary/20 rounded-lg text-sm text-text-primary hover:text-primary transition-colors"
-                            >
-                              {resource.name} &rarr;
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* View Programs CTA */}
-                      <div className="mt-6 pt-4 border-t border-surface-light">
-                        <Link
-                          href={`/programs?career=${careerKey}`}
-                          className="inline-block bg-primary hover:bg-primary-hover text-white font-medium px-6 py-2 rounded-lg transition-colors text-sm"
-                        >
-                          View {career.title} Training Programs &rarr;
-                        </Link>
-                      </div>
-                    </div>
-                  )}
                 </div>
               );
             })}

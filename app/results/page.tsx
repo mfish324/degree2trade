@@ -239,12 +239,18 @@ function ResultsContent() {
                     </div>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-surface-light">
+                  <div className="mt-6 pt-4 border-t border-surface-light flex flex-wrap gap-3">
                     <Link
                       href={`/programs?career=${careerKey}`}
                       className="inline-block bg-primary hover:bg-primary-hover text-white font-medium px-6 py-2 rounded-lg transition-colors text-sm"
                     >
                       View {career.title} Programs
+                    </Link>
+                    <Link
+                      href={`/careers/${careerKey}`}
+                      className="inline-block bg-surface-light hover:bg-surface text-text-primary font-medium px-6 py-2 rounded-lg transition-colors text-sm border border-surface-light"
+                    >
+                      Learn More &rarr;
                     </Link>
                   </div>
                 </div>
@@ -270,14 +276,15 @@ function ResultsContent() {
                 const percentage = calculatePercentage(score);
 
                 return (
-                  <div
+                  <Link
                     key={careerKey}
-                    className="bg-surface-light rounded-lg p-4 border border-surface-light"
+                    href={`/careers/${careerKey}`}
+                    className="bg-surface-light rounded-lg p-4 border border-surface-light hover:border-primary/50 transition-colors block group"
                   >
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-2xl">{career.icon}</span>
                       <div>
-                        <h3 className="font-semibold">{career.title}</h3>
+                        <h3 className="font-semibold group-hover:text-primary transition-colors">{career.title}</h3>
                         <span className="text-text-muted text-sm">
                           {percentage}% Match
                         </span>
@@ -287,7 +294,7 @@ function ResultsContent() {
                       {career.salary}
                     </p>
                     <p className="text-text-muted text-xs">{career.training}</p>
-                  </div>
+                  </Link>
                 );
               })}
             </div>

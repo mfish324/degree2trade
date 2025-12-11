@@ -333,7 +333,7 @@ export default function Home() {
               return (
                 <Link
                   key={careerKey}
-                  href={`/library#${careerKey}`}
+                  href={`/careers/${careerKey}`}
                   className="bg-surface rounded-lg p-5 border border-surface-light hover:border-primary/50 transition-colors block group"
                 >
                   <div className="text-3xl mb-2">{career.icon}</div>
