@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Work_Sans } from "next/font/google";
 import "./globals.css";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${workSans.variable} font-sans antialiased`}
       >
+        <GoogleAnalytics />
         {children}
       </body>
     </html>
