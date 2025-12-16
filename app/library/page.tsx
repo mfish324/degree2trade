@@ -769,6 +769,7 @@ export default function LibraryPage() {
                 className="bg-surface rounded-xl p-5 border border-surface-light hover:border-[#FF0000]/50 transition-all group flex gap-4"
               >
                 <div className="flex-shrink-0 w-14 h-14 rounded-full overflow-hidden bg-surface-light">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={channel.thumbnail}
                     alt={channel.name}

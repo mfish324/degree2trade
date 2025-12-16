@@ -174,6 +174,12 @@ function ProgramsContent() {
   // Fetch programs from Supabase
   useEffect(() => {
     async function fetchPrograms() {
+      if (!supabase) {
+        setError("Database connection not available.");
+        setLoading(false);
+        return;
+      }
+
       try {
         const { data, error } = await supabase
           .from("programs")

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import {
   parentResources,
@@ -63,9 +63,9 @@ function FeaturedCarousel({ resources }: { resources: Resource[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % resources.length);
-  };
+  }, [resources.length]);
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + resources.length) % resources.length);
@@ -75,7 +75,7 @@ function FeaturedCarousel({ resources }: { resources: Resource[] }) {
   useEffect(() => {
     const timer = setInterval(nextSlide, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [nextSlide]);
 
   return (
     <div className="relative">

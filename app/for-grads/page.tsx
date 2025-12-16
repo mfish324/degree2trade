@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import {
   gradResources,
@@ -77,9 +77,9 @@ function ResourceCard({ resource }: { resource: Resource }) {
 function FeaturedCarousel({ resources }: { resources: Resource[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % resources.length);
-  };
+  }, [resources.length]);
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + resources.length) % resources.length);
@@ -89,7 +89,7 @@ function FeaturedCarousel({ resources }: { resources: Resource[] }) {
   useEffect(() => {
     const timer = setInterval(nextSlide, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [nextSlide]);
 
   return (
     <div className="relative">
