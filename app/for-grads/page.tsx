@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { Header } from "@/components/Header";
 import {
   gradResources,
   gradCategories,
@@ -524,42 +525,7 @@ export default function ForGradsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-surface-light bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <Link
-            href="/"
-            className="font-display text-xl font-bold text-primary"
-          >
-            Degree2Trade
-          </Link>
-          <nav className="flex items-center gap-6 text-text-secondary text-sm">
-            <Link
-              href="/programs"
-              className="hover:text-primary transition-colors hidden sm:block"
-            >
-              Programs
-            </Link>
-            <Link
-              href="/library"
-              className="hover:text-primary transition-colors hidden sm:block"
-            >
-              Career Library
-            </Link>
-            <Link
-              href="/for-parents"
-              className="hover:text-primary transition-colors"
-            >
-              For Parents
-            </Link>
-            <Link
-              href="/quiz"
-              className="px-4 py-1.5 bg-primary hover:bg-primary-hover text-white rounded-lg transition-colors"
-            >
-              Take Quiz
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <section className="py-20 px-4 bg-gradient-to-br from-primary/10 via-background to-background">

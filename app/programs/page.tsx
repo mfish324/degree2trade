@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { supabase, Program, CareerPathFilter } from "@/lib/supabase";
 import { careerPaths, CareerPath } from "@/lib/quizData";
 import { ResponsiveAd, InContentAd } from "@/components/AdPlaceholder";
+import { Header } from "@/components/Header";
 
 // US State coordinates for distance calculation
 const stateCoordinates: Record<string, { lat: number; lng: number }> = {
@@ -358,27 +359,7 @@ function ProgramsContent() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-surface-light bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="font-display text-xl font-bold text-primary">
-            Degree2Trade
-          </Link>
-          <nav className="flex items-center gap-6 text-text-secondary text-sm">
-            <Link href="/programs" className="text-primary">
-              Programs
-            </Link>
-            <Link href="/library" className="hover:text-primary transition-colors">
-              Career Library
-            </Link>
-            <Link href="/financial-aid" className="hover:text-primary transition-colors">
-              Financial Aid
-            </Link>
-            <Link href="/quiz" className="px-4 py-1.5 bg-primary hover:bg-primary-hover text-white rounded-lg transition-colors">
-              Take Quiz
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <section className="py-8 px-4 bg-surface border-b border-surface-light">
