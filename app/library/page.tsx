@@ -28,7 +28,7 @@ const youtubeChannels = {
       url: "https://www.youtube.com/@SkillsUSA",
       subscribers: "15K+",
       description: "National organization for career and technical education students",
-      thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_mwwZ-GqZmTWzxZyTPbhvEFVQiOmwxbqXLKEKYY=s176-c-k-c0x00ffffff-no-rj",
+      thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_mtrY5vb2AIcK2IbKGJ3urm-YMwSp7yHw1gr36GKmIPu10=s160-c-k-c0x00ffffff-no-rj",
     },
   ],
   electrician: [
@@ -86,11 +86,11 @@ const youtubeChannels = {
   hvac: [
     {
       name: "HVAC School",
-      handle: "@HVACSchool",
-      url: "https://www.youtube.com/@HVACSchool",
+      handle: "@HVACS",
+      url: "https://www.youtube.com/@HVACS",
       subscribers: "200K+",
       description: "Technical HVAC training and industry best practices",
-      thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_nVwXc4_4TqEKLMbqfQz6Y3rQpRTLy3hQIJLMeXFA=s176-c-k-c0x00ffffff-no-rj",
+      thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_nogUAkv5tyWhpih1HTtQ440wrVutv6sewDz3XnDurM3A=s160-c-k-c0x00ffffff-no-rj",
     },
     {
       name: "Word of Advice TV",
@@ -119,20 +119,20 @@ const youtubeChannels = {
       thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_nzQrZ8hPMvOqq2RNXA6hzQJI6TnY_Q6fLs9DdP=s176-c-k-c0x00ffffff-no-rj",
     },
     {
-      name: "Weld.com",
-      handle: "@waborcom",
-      url: "https://www.youtube.com/@weldcom",
-      subscribers: "400K+",
-      description: "75+ years combined experience from structural to aerospace welding",
+      name: "Western Welding Academy",
+      handle: "@westernweldingacademy",
+      url: "https://www.youtube.com/@westernweldingacademy",
+      subscribers: "560K+",
+      description: "Voted #1 welding school in the world.",
       thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_k5A_dDV-5fQWvfJPLZcZMIqVjH_LvKqCyNWwSi=s176-c-k-c0x00ffffff-no-rj",
     },
     {
-      name: "ChuckE2009",
-      handle: "@ChuckE2009",
-      url: "https://www.youtube.com/@ChuckE2009",
-      subscribers: "500K+",
-      description: "Informative welding projects and fabrication content",
-      thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_mzJRlTJ_x5VVQY2cOaKLqFWZJkLvM6Mv5dKRCJ=s176-c-k-c0x00ffffff-no-rj",
+      name: "Weld.com",
+      handle: "@welddotcom",
+      url: "https://www.youtube.com/@welddotcom",
+      subscribers: "1.1M+",
+      description: "A comprehensive space where welding enthusiasts of all levels can gather and learn.",
+      thumbnail: "https://yt3.googleusercontent.com/SOMkRAmNPYa7UYirhGl1DqaPY7qBkoC8LydhS5zercM9dYL2t5cFKzgduMeTNGCvZsdOpCAu=s160-c-k-c0x00ffffff-no-rj",
     },
   ],
   nurse: [
@@ -739,44 +739,36 @@ export default function LibraryPage() {
             ))}
           </div>
 
-          {/* Channel Cards */}
-          <div className="grid md:grid-cols-2 gap-4">
+          {/* Channel Cards - Smart grid: 3 cols for 3 items, 2 cols otherwise */}
+          <div className={`grid gap-4 ${
+            youtubeChannels[selectedChannelCategory].length === 3
+              ? 'md:grid-cols-3'
+              : 'md:grid-cols-2'
+          }`}>
             {youtubeChannels[selectedChannelCategory].map((channel, index) => (
               <a
                 key={index}
                 href={channel.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-surface rounded-xl p-5 border border-surface-light hover:border-[#FF0000]/50 transition-all group flex gap-4"
+                className="bg-surface rounded-xl p-5 border border-surface-light hover:border-[#FF0000]/50 transition-all group"
               >
-                <div className="flex-shrink-0 w-14 h-14 rounded-full overflow-hidden bg-surface-light">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={channel.thumbnail}
-                    alt={channel.name}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      // Fallback to YouTube icon if image fails
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      target.parentElement!.innerHTML = `<div class="w-full h-full bg-[#FF0000]/20 flex items-center justify-center"><svg class="w-6 h-6 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>`;
-                    }}
-                  />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#FF0000]/20 flex items-center justify-center">
+                    <svg className="w-5 h-5 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                  </div>
+                  <div className="flex-1 min-w-0">
                     <h3 className="font-semibold group-hover:text-[#FF0000] transition-colors truncate">
                       {channel.name}
                     </h3>
-                    <span className="text-text-muted text-xs flex-shrink-0">
-                      {channel.subscribers}
-                    </span>
+                    <p className="text-text-muted text-xs">{channel.handle} · {channel.subscribers}</p>
                   </div>
-                  <p className="text-text-muted text-xs mb-2">{channel.handle}</p>
-                  <p className="text-text-secondary text-sm line-clamp-2">
-                    {channel.description}
-                  </p>
                 </div>
+                <p className="text-text-secondary text-sm line-clamp-2">
+                  {channel.description}
+                </p>
               </a>
             ))}
           </div>
