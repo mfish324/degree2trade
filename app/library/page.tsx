@@ -15,14 +15,6 @@ import { Header } from "@/components/Header";
 const youtubeChannels = {
   general: [
     {
-      name: "Mike Rowe Works",
-      handle: "@miaborowe",
-      url: "https://www.youtube.com/@miaborowe",
-      subscribers: "300K+",
-      description: "Dirty Jobs host championing skilled trades and work ethic scholarships",
-      thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_kQjS2-hk0-4EhJgB4gYwxwZPJr6J3qC9K9vZJ3AQ=s176-c-k-c0x00ffffff-no-rj",
-    },
-    {
       name: "SkillsUSA",
       handle: "@SkillsUSA",
       url: "https://www.youtube.com/@SkillsUSA",
