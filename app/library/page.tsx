@@ -15,6 +15,14 @@ import { Header } from "@/components/Header";
 const youtubeChannels = {
   general: [
     {
+      name: "Ford CEO Sounds Alarm: Skilled Worker Shortage",
+      handle: "@electricviking",
+      url: "https://www.youtube.com/watch?v=yBoEuB0-6JU",
+      subscribers: "337K",
+      description: "Skilled trades can earn double the medain American worker's salary.",
+      thumbnail: "",
+    },
+    {
       name: "SkillsUSA",
       handle: "@SkillsUSA",
       url: "https://www.youtube.com/@SkillsUSA",
