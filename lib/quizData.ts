@@ -416,7 +416,7 @@ export const quizQuestions: QuizQuestion[] = [
 export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   electrician: {
     title: "Electrician",
-    salary: "$60,000-$90,000",
+    salary: "$62,000-$106,000",
     training: "4-5 years apprenticeship",
     growth: "7%",
     icon: "⚡",
@@ -435,7 +435,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   },
   nurse: {
     title: "Registered Nurse",
-    salary: "$77,000-$95,000",
+    salary: "$94,000-$129,000",
     training: "16-24 months ABSN",
     growth: "6%",
     icon: "🏥",
@@ -452,7 +452,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   },
   emt: {
     title: "EMT / Paramedic",
-    salary: "$38,000-$55,000 (EMT) / $50,000-$75,000 (Paramedic)",
+    salary: "$41,000-$61,000 (EMT) / $58,000-$82,000 (Paramedic)",
     training: "2-6 months (EMT) / 1-2 years (Paramedic)",
     growth: "5%",
     icon: "🚑",
@@ -469,7 +469,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   },
   hvac: {
     title: "HVAC Technician",
-    salary: "$55,000-$80,000",
+    salary: "$60,000-$91,000",
     training: "6 months-2 years",
     growth: "6%",
     icon: "❄️",
@@ -486,7 +486,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   },
   plumber: {
     title: "Plumber",
-    salary: "$60,000-$95,000",
+    salary: "$63,000-$105,000",
     training: "4-5 years apprenticeship",
     growth: "3%",
     icon: "🔧",
@@ -503,7 +503,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   },
   firefighter: {
     title: "Firefighter",
-    salary: "$52,000-$75,000",
+    salary: "$60,000-$101,000",
     training: "3-6 months academy",
     growth: "4%",
     icon: "🚒",
@@ -520,9 +520,9 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   },
   solar: {
     title: "Solar Technician",
-    salary: "$45,000-$65,000",
+    salary: "$52,000-$75,000",
     training: "2-6 months",
-    growth: "22% - Much faster than average",
+    growth: "42% - Much faster than average",
     icon: "☀️",
     tagline: "Install the future of clean energy",
     description:
@@ -537,7 +537,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   },
   welder: {
     title: "Welder",
-    salary: "$45,000-$70,000",
+    salary: "$51,000-$76,000",
     training: "7 months-2 years",
     growth: "2%",
     icon: "🔥",
@@ -553,7 +553,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   },
   police: {
     title: "Police Officer",
-    salary: "$55,000-$85,000",
+    salary: "$77,000-$120,000",
     training: "6 months academy",
     growth: "3%",
     icon: "👮",
@@ -570,7 +570,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   },
   medicalTech: {
     title: "Medical Laboratory Technician",
-    salary: "$50,000-$70,000",
+    salary: "$62,000-$98,000",
     training: "2 years (associate) or 4 years (bachelor)",
     growth: "5%",
     icon: "🔬",
