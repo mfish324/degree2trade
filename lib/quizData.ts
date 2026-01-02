@@ -30,6 +30,7 @@ export interface QuizQuestion {
 export interface CareerPathInfo {
   title: string;
   salary: string;
+  salaryHighCost?: string; // Salary range in CA, NY, WA, MA
   training: string;
   growth: string;
   icon: string;
@@ -417,8 +418,9 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   electrician: {
     title: "Electrician",
     salary: "$62,000-$106,000",
+    salaryHighCost: "$75,000-$130,000",
     training: "4-5 years apprenticeship",
-    growth: "7%",
+    growth: "9%",
     icon: "⚡",
     tagline: "Power the world with skilled electrical work",
     description:
@@ -436,6 +438,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   nurse: {
     title: "Registered Nurse",
     salary: "$94,000-$129,000",
+    salaryHighCost: "$120,000-$160,000",
     training: "16-24 months ABSN",
     growth: "6%",
     icon: "🏥",
@@ -453,6 +456,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   emt: {
     title: "EMT / Paramedic",
     salary: "$41,000-$61,000 (EMT) / $58,000-$82,000 (Paramedic)",
+    salaryHighCost: "$50,000-$75,000 (EMT) / $70,000-$100,000 (Paramedic)",
     training: "2-6 months (EMT) / 1-2 years (Paramedic)",
     growth: "5%",
     icon: "🚑",
@@ -470,8 +474,9 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   hvac: {
     title: "HVAC Technician",
     salary: "$60,000-$91,000",
+    salaryHighCost: "$72,000-$110,000",
     training: "6 months-2 years",
-    growth: "6%",
+    growth: "9%",
     icon: "❄️",
     tagline: "Keep the world comfortable year-round",
     description:
@@ -487,6 +492,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   plumber: {
     title: "Plumber",
     salary: "$63,000-$105,000",
+    salaryHighCost: "$80,000-$130,000",
     training: "4-5 years apprenticeship",
     growth: "3%",
     icon: "🔧",
@@ -504,6 +510,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   firefighter: {
     title: "Firefighter",
     salary: "$60,000-$101,000",
+    salaryHighCost: "$75,000-$130,000",
     training: "3-6 months academy",
     growth: "4%",
     icon: "🚒",
@@ -521,6 +528,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   solar: {
     title: "Solar Technician",
     salary: "$52,000-$75,000",
+    salaryHighCost: "$65,000-$95,000",
     training: "2-6 months",
     growth: "42% - Much faster than average",
     icon: "☀️",
@@ -538,6 +546,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   welder: {
     title: "Welder",
     salary: "$51,000-$76,000",
+    salaryHighCost: "$65,000-$95,000",
     training: "7 months-2 years",
     growth: "2%",
     icon: "🔥",
@@ -554,6 +563,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   police: {
     title: "Police Officer",
     salary: "$77,000-$120,000",
+    salaryHighCost: "$95,000-$150,000",
     training: "6 months academy",
     growth: "3%",
     icon: "👮",
@@ -571,6 +581,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   medicalTech: {
     title: "Medical Laboratory Technician",
     salary: "$62,000-$98,000",
+    salaryHighCost: "$75,000-$120,000",
     training: "2 years (associate) or 4 years (bachelor)",
     growth: "5%",
     icon: "🔬",
@@ -588,6 +599,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   religiousVocations: {
     title: "Religious Ministry & Service",
     salary: "$40,000-$65,000 (varies widely)",
+    salaryHighCost: "$50,000-$85,000 (varies widely)",
     training: "1-4 years (depending on path)",
     growth: "1%",
     icon: "🙏",
@@ -609,6 +621,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   military: {
     title: "Military Service",
     salary: "$45,000-$100,000+ (with benefits)",
+    salaryHighCost: "$55,000-$120,000+ (with BAH adjustment)",
     training: "8-13 weeks basic + specialty training",
     growth: "Stable",
     icon: "🎖️",
@@ -630,6 +643,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   mechanic: {
     title: "Mechanic / Technician",
     salary: "$45,000-$75,000",
+    salaryHighCost: "$55,000-$95,000",
     training: "6 months-2 years",
     growth: "4%",
     icon: "🔧",

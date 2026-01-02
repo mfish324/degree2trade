@@ -196,6 +196,14 @@ function ResultsContent() {
                             {career.salary}
                           </span>
                         </div>
+                        {career.salaryHighCost && (
+                          <div className="flex justify-between">
+                            <span className="text-text-muted">In CA, NY, WA, MA:</span>
+                            <span className="text-primary font-medium">
+                              {career.salaryHighCost}
+                            </span>
+                          </div>
+                        )}
                         <div className="flex justify-between">
                           <span className="text-text-muted">Training Time:</span>
                           <span className="text-text-primary">

@@ -83,7 +83,13 @@ export default async function CareerPage({
               <div className="flex flex-wrap gap-4">
                 <div className="bg-surface rounded-lg px-4 py-3">
                   <div className="text-primary font-bold text-lg">{career.salary}</div>
-                  <div className="text-text-muted text-xs">Salary Range</div>
+                  <div className="text-text-muted text-xs">National Salary Range</div>
+                  {career.salaryHighCost && (
+                    <div className="mt-2 pt-2 border-t border-surface-light">
+                      <div className="text-primary font-bold">{career.salaryHighCost}</div>
+                      <div className="text-text-muted text-xs">In CA, NY, WA, MA</div>
+                    </div>
+                  )}
                 </div>
                 <div className="bg-surface rounded-lg px-4 py-3">
                   <div className="text-text-primary font-bold text-lg">{career.training}</div>
