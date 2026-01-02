@@ -19,7 +19,7 @@ const youtubeChannels = {
       handle: "@electricviking",
       url: "https://www.youtube.com/watch?v=yBoEuB0-6JU",
       subscribers: "337K",
-      description: "Skilled trades can earn double the medain American worker's salary.",
+      description: "Skilled trades can earn double the median American worker's salary.",
       thumbnail: "",
     },
     {
