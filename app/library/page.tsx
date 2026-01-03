@@ -513,8 +513,14 @@ export default function LibraryPage() {
                   <tr className="border-b border-surface-light">
                     <td className="p-3 font-medium text-text-secondary">Salary Range</td>
                     {compareList.map((careerKey) => (
-                      <td key={careerKey} className="p-3 text-center text-primary font-semibold">
-                        {careerPaths[careerKey].salary}
+                      <td key={careerKey} className="p-3 text-center">
+                        <div className="text-primary font-semibold">{careerPaths[careerKey].salary}</div>
+                        {careerPaths[careerKey].salaryHighCost && (
+                          <div className="text-xs text-text-muted mt-1">
+                            <span className="text-primary">{careerPaths[careerKey].salaryHighCost}</span>
+                            <br />in CA, NY, WA, MA
+                          </div>
+                        )}
                       </td>
                     ))}
                   </tr>
@@ -670,6 +676,11 @@ export default function LibraryPage() {
                           <span className="text-text-muted">{career.training}</span>
                           <span className="text-success">{career.growth} growth</span>
                         </div>
+                        {career.salaryHighCost && (
+                          <div className="text-xs text-text-muted mt-1">
+                            <span className="text-primary font-medium">{career.salaryHighCost}</span> in CA, NY, WA, MA
+                          </div>
+                        )}
                       </div>
                     </div>
                   </Link>
