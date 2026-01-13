@@ -12,10 +12,14 @@ jobs:
     steps:
       - name: Ping keep-alive endpoint
         run: |
-          response=$(curl -s -o /dev/null -w "%{http_code}" https://degree2trade.com/api/keep-alive)
-          echo "Response code: $response"
-          if [ "$response" != "200" ]; then
-            echo "Keep-alive ping failed with status $response"
+          echo "Pinging keep-alive endpoint..."
+          response=$(curl -s -w "\n%{http_code}" https://degree2trade.vercel.app/api/keep-alive)
+          http_code=$(echo "$response" | tail -n1)
+          body=$(echo "$response" | head -n -1)
+          echo "Response body: $body"
+          echo "HTTP code: $http_code"
+          if [ "$http_code" != "200" ]; then
+            echo "Keep-alive ping failed"
             exit 1
           fi
           echo "Keep-alive ping successful"
