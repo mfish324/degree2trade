@@ -7,6 +7,7 @@ export function Header() {
   const pathname = usePathname();
 
   const navLinks = [
+    { href: "/about", label: "Our Mission" },
     { href: "/programs", label: "Programs" },
     { href: "/library", label: "Career Library" },
     { href: "/financial-aid", label: "Financial Aid" },

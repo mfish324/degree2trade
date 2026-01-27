@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { careerPaths, CareerPath } from "@/lib/quizData";
 import { shortageStatistics, newsItems } from "@/lib/shortageData";
@@ -11,6 +14,9 @@ import { Header } from "@/components/Header";
 // - Look into affiliate partnerships with trade schools
 
 export default function Home() {
+  const [showAllShortages, setShowAllShortages] = useState(false);
+  const [showAllNews, setShowAllNews] = useState(false);
+
   const featuredCareers: CareerPath[] = [
     "electrician",
     "nurse",
@@ -26,6 +32,12 @@ export default function Home() {
     "military",
   ];
 
+  const displayedShortages = showAllShortages
+    ? shortageStatistics.slice(0, 10)
+    : shortageStatistics.slice(0, 5);
+
+  const displayedNews = showAllNews ? newsItems.slice(0, 8) : newsItems.slice(0, 4);
+
   return (
     <main className="min-h-screen">
       <Header />
@@ -37,12 +49,18 @@ export default function Home() {
             Your Degree is Your{" "}
             <span className="text-primary">Advantage</span>
           </h1>
-          <p className="text-xl md:text-2xl text-text-secondary mb-8 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-text-secondary mb-4 max-w-2xl mx-auto">
+            Find high-paying trade careers that match your degree and interests in 90 seconds.
+          </p>
+          <p className="text-text-muted mb-8 max-w-xl mx-auto">
             Turn that &quot;useless&quot; degree into a competitive edge in
             skilled trades, emergency services, and ministry.
           </p>
 
-          {/* Stats Grid */}
+          {/* Stats Grid with Context */}
+          <p className="text-text-muted text-sm mb-4 max-w-xl mx-auto">
+            If you feel underemployed with your college degree, you&apos;re not alone:
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             <div className="bg-surface rounded-lg p-6">
               <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
@@ -68,15 +86,33 @@ export default function Home() {
             </div>
           </div>
 
-          <Link
-            href="/quiz"
-            className="inline-block bg-primary hover:bg-primary-hover text-white font-semibold text-lg px-8 py-4 rounded-lg transition-colors mb-4"
-          >
-            Take the 90-Second Career Quiz
-          </Link>
-          <p className="text-text-muted text-sm">
-            No email required &bull; Get instant results
-          </p>
+          {/* Quiz CTA with Clear Benefits */}
+          <div className="bg-surface-light/50 rounded-xl p-6 max-w-md mx-auto">
+            <h3 className="font-semibold mb-3">What You&apos;ll Discover:</h3>
+            <ul className="text-left text-sm text-text-secondary mb-4 space-y-2">
+              <li className="flex items-start gap-2">
+                <span className="text-primary">&#10003;</span>
+                <span>Top 3 careers matched to your interests</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary">&#10003;</span>
+                <span>Salary ranges and training requirements</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary">&#10003;</span>
+                <span>How your specific degree gives you an edge</span>
+              </li>
+            </ul>
+            <Link
+              href="/quiz"
+              className="inline-block bg-primary hover:bg-primary-hover text-white font-semibold text-lg px-8 py-4 rounded-lg transition-colors w-full"
+            >
+              Find My Career Match
+            </Link>
+            <p className="text-text-muted text-xs mt-3">
+              90 seconds &bull; No email required &bull; Instant results
+            </p>
+          </div>
         </div>
       </section>
 
@@ -183,7 +219,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-            {shortageStatistics.slice(0, 10).map((stat, index) => (
+            {displayedShortages.map((stat, index) => (
               <a
                 key={index}
                 href={stat.sourceUrl}
@@ -207,6 +243,17 @@ export default function Home() {
               </a>
             ))}
           </div>
+
+          {!showAllShortages && (
+            <div className="text-center mt-8">
+              <button
+                onClick={() => setShowAllShortages(true)}
+                className="text-primary hover:text-primary-hover font-medium transition-colors"
+              >
+                View All Shortages &rarr;
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -225,7 +272,7 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {newsItems.slice(0, 8).map((news, index) => (
+            {displayedNews.map((news, index) => (
               <a
                 key={index}
                 href={news.sourceUrl}
@@ -257,6 +304,17 @@ export default function Home() {
               </a>
             ))}
           </div>
+
+          {!showAllNews && (
+            <div className="text-center mt-8">
+              <button
+                onClick={() => setShowAllNews(true)}
+                className="text-primary hover:text-primary-hover font-medium transition-colors"
+              >
+                More News &rarr;
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -328,6 +386,17 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section - Enable when testimonials available
+      <section className="py-20 px-4 bg-surface">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-center mb-12">
+            What Career Changers Are Saying
+          </h2>
+          {/* Testimonial cards here */}
+        {/* </div>
+      </section>
+      */}
 
       {/* Final CTA */}
       <section className="bg-gradient-to-r from-primary to-orange-600 py-20 px-4">

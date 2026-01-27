@@ -93,6 +93,31 @@ export default function AboutPage() {
             </div>
           </section>
 
+          {/* How We Operate */}
+          <section>
+            <h2 className="text-2xl font-bold mb-4">How We Operate</h2>
+            <p className="text-text-secondary mb-4">
+              Degree2Trade is completely free for users. We may earn revenue through:
+            </p>
+            <ul className="space-y-2 text-text-secondary mb-4">
+              <li className="flex items-start gap-3">
+                <span className="text-primary mt-1">&#8226;</span>
+                <span>Partnerships with accredited training programs (referral fees)</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-primary mt-1">&#8226;</span>
+                <span>Non-intrusive advertising from relevant employers</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-primary mt-1">&#8226;</span>
+                <span>Sponsored content from trade associations</span>
+              </li>
+            </ul>
+            <p className="text-text-secondary">
+              We never sell your personal data, and our career recommendations are based solely on your quiz answers&mdash;not paid placements.
+            </p>
+          </section>
+
           {/* Your Degree Advantage */}
           <section>
             <h2 className="text-2xl font-bold mb-4">The Degree Advantage</h2>
