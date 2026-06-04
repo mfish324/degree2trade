@@ -14,6 +14,7 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://degree2trade.com"),
   title: "Degree2Trade - Find Trade Careers That Match Your Degree",
   description:
     "Free 90-second career quiz helps college graduates discover high-paying careers in skilled trades. Match your degree to electrician, nursing, HVAC, and more.",
@@ -35,11 +36,36 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://degree2trade.com/#organization",
+        name: "Degree2Trade",
+        url: "https://degree2trade.com",
+        description:
+          "Helping college graduates discover high-paying careers in skilled trades.",
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://degree2trade.com/#website",
+        url: "https://degree2trade.com",
+        name: "Degree2Trade",
+        publisher: { "@id": "https://degree2trade.com/#organization" },
+      },
+    ],
+  };
+
   return (
     <html lang="en">
       <body
         className={`${inter.variable} ${workSans.variable} font-sans antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <GoogleAnalytics />
         {children}
       </body>
