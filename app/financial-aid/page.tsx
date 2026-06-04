@@ -18,7 +18,7 @@ const financialAidResources = [
       },
       {
         name: "Federal Pell Grant",
-        description: "Free money for students with financial need. Up to $7,395 for 2024-25. Does not need to be repaid.",
+        description: "Free money for students with financial need. Up to $7,395 for the 2026-27 award year. Does not need to be repaid.",
         url: "https://studentaid.gov/understand-aid/types/grants/pell",
         highlight: "Up to $7,395/year",
       },
@@ -62,7 +62,7 @@ const financialAidResources = [
         name: "Post-9/11 GI Bill",
         description: "Covers full tuition and fees, monthly housing allowance, and books/supplies stipend for veterans.",
         url: "https://www.va.gov/education/about-gi-bill-benefits/post-9-11/",
-        highlight: "100% tuition covered",
+        highlight: "Up to 100% tuition covered",
       },
       {
         name: "VET TEC Program",
@@ -221,7 +221,7 @@ export default function FinancialAidPage() {
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-primary">$7,395</div>
-              <div className="text-text-muted text-sm">Max Pell Grant 2024-25</div>
+              <div className="text-text-muted text-sm">Max Pell Grant 2026-27</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-primary">100%</div>
@@ -385,7 +385,7 @@ export default function FinancialAidPage() {
       {/* Footer */}
       <footer className="bg-surface py-8 px-4 border-t border-surface-light">
         <div className="max-w-6xl mx-auto text-center text-text-muted text-sm">
-          &copy; 2025 Degree2Trade. All rights reserved.
+          &copy; {new Date().getFullYear()} Degree2Trade. All rights reserved.
         </div>
       </footer>
     </div>

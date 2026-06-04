@@ -76,7 +76,7 @@ const youtubeChannels = {
     },
     {
       name: "Plumberparts",
-      handle: "@plaborparts",
+      handle: "@plumberparts",
       url: "https://www.youtube.com/@plumberparts",
       subscribers: "600K+",
       description: "UK-based plumbing tutorials from basic repairs to advanced installations",
@@ -182,8 +182,8 @@ const youtubeChannels = {
   firefighter: [
     {
       name: "FirefighterNOW",
-      handle: "@FirefighterNOW",
-      url: "https://www.youtube.com/@FirefighterNOW",
+      handle: "FirefighterNOW",
+      url: "https://www.youtube.com/c/FirefighterNOW",
       subscribers: "100K+",
       description: "Firefighter training, hiring tips, and career advice",
       thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_kS3fzR8qnNLM7jPqRp5QPl_qk3fWvmqFU_EqSm=s176-c-k-c0x00ffffff-no-rj",
@@ -191,7 +191,7 @@ const youtubeChannels = {
     {
       name: "Fire Department Chronicles",
       handle: "@FireDeptChronicles",
-      url: "https://www.youtube.com/@faborDeptChronicles",
+      url: "https://www.youtube.com/@FireDeptChronicles",
       subscribers: "300K+",
       description: "Real firefighter stories and department behind-the-scenes",
       thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_mD3N7Z2rXK8LCbB4Db4qLCQkPIwEKw9RvLF9Yq=s176-c-k-c0x00ffffff-no-rj",
@@ -244,8 +244,8 @@ const youtubeChannels = {
     },
     {
       name: "Matt Risinger",
-      handle: "@MattRisinger",
-      url: "https://www.youtube.com/@MattRisinger",
+      handle: "@buildshow",
+      url: "https://www.youtube.com/@buildshow",
       subscribers: "1M+",
       description: "Building science and modern construction techniques",
       thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_mRK1PJLBvXLJKcQG0RnDj5VyH8WjKPqM0=s176-c-k-c0x00ffffff-no-rj",
@@ -254,16 +254,16 @@ const youtubeChannels = {
   ministry: [
     {
       name: "The Gospel Coalition",
-      handle: "@TGC",
-      url: "https://www.youtube.com/@TGC",
+      handle: "@TheGospelCoalition",
+      url: "https://www.youtube.com/@TheGospelCoalition",
       subscribers: "400K+",
       description: "Theological training, sermons, and ministry resources",
       thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_kl5VXJL3u_8FKvAl0PwJLGQoRwS8wqLFj=s176-c-k-c0x00ffffff-no-rj",
     },
     {
       name: "Desiring God",
-      handle: "@daboringGod",
-      url: "https://www.youtube.com/@daboringGod",
+      handle: "@desiringGod",
+      url: "https://www.youtube.com/@desiringGod",
       subscribers: "1.2M+",
       description: "John Piper's ministry with sermons and pastoral guidance",
       thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_kVjRc2VNQKRR5tKMHQFv_rMF_iJ5LvQcvN=s176-c-k-c0x00ffffff-no-rj",
@@ -312,8 +312,8 @@ const youtubeChannels = {
     },
     {
       name: "Jocko Podcast",
-      handle: "@JockoPodcast",
-      url: "https://www.youtube.com/@JockoPodcast",
+      handle: "@JockoPodcastOfficial",
+      url: "https://www.youtube.com/@JockoPodcastOfficial",
       subscribers: "1.8M+",
       description: "Former Navy SEAL Jocko Willink on leadership and discipline",
       thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_nLpqLVrX8Zx_YpJqWQTKmV7EwHqNLz=s176-c-k-c0x00ffffff-no-rj",
@@ -322,8 +322,8 @@ const youtubeChannels = {
   mechanic: [
     {
       name: "South Main Auto Repair",
-      handle: "@SouthMainAutoRepairAvworwvr",
-      url: "https://www.youtube.com/@SouthMainAutoRepairAvworwvr",
+      handle: "South Main Auto",
+      url: "https://www.youtube.com/c/SouthMainAutoRepairAvoca",
       subscribers: "900K+",
       description: "Real-world auto diagnostics and repair from a working shop",
       thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_nQGqKLM5PMhJvN2y_HRNe3dKRNxQp7bQoS=s176-c-k-c0x00ffffff-no-rj",
@@ -808,7 +808,7 @@ export default function LibraryPage() {
       {/* Footer */}
       <footer className="bg-surface py-8 px-4 border-t border-surface-light">
         <div className="max-w-6xl mx-auto text-center text-text-muted text-sm">
-          &copy; 2025 Degree2Trade. All rights reserved.
+          &copy; {new Date().getFullYear()} Degree2Trade. All rights reserved.
         </div>
       </footer>
     </div>

@@ -426,7 +426,7 @@ export default function ForParentsPage() {
       {/* Footer */}
       <footer className="bg-surface py-8 px-4 border-t border-surface-light">
         <div className="max-w-6xl mx-auto text-center text-text-muted text-sm">
-          &copy; 2025 Degree2Trade. All rights reserved.
+          &copy; {new Date().getFullYear()} Degree2Trade. All rights reserved.
         </div>
       </footer>
     </div>

@@ -437,10 +437,10 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   },
   nurse: {
     title: "Registered Nurse",
-    salary: "$94,000-$129,000",
+    salary: "$94,000-$135,000",
     salaryHighCost: "$120,000-$160,000",
     training: "16-24 months ABSN",
-    growth: "6%",
+    growth: "5%",
     icon: "🏥",
     tagline: "Provide compassionate care that saves lives",
     description:
@@ -476,7 +476,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
     salary: "$60,000-$91,000",
     salaryHighCost: "$72,000-$110,000",
     training: "6 months-2 years",
-    growth: "9%",
+    growth: "8%",
     icon: "❄️",
     tagline: "Keep the world comfortable year-round",
     description:
@@ -494,7 +494,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
     salary: "$63,000-$105,000",
     salaryHighCost: "$80,000-$130,000",
     training: "4-5 years apprenticeship",
-    growth: "3%",
+    growth: "4%",
     icon: "🔧",
     tagline: "Build the systems that make modern life possible",
     description:
@@ -512,7 +512,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
     salary: "$60,000-$101,000",
     salaryHighCost: "$75,000-$130,000",
     training: "3-6 months academy",
-    growth: "4%",
+    growth: "3%",
     icon: "🚒",
     tagline: "Run toward danger to protect your community",
     description:
@@ -527,7 +527,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   },
   solar: {
     title: "Solar Technician",
-    salary: "$52,000-$75,000",
+    salary: "$52,000-$80,000",
     salaryHighCost: "$65,000-$95,000",
     training: "2-6 months",
     growth: "42% - Much faster than average",
@@ -583,7 +583,7 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
     salary: "$62,000-$98,000",
     salaryHighCost: "$75,000-$120,000",
     training: "2 years (associate) or 4 years (bachelor)",
-    growth: "5%",
+    growth: "2%",
     icon: "🔬",
     tagline: "Discover the answers that guide patient care",
     description:
@@ -598,8 +598,8 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   },
   religiousVocations: {
     title: "Religious Ministry & Service",
-    salary: "$40,000-$65,000 (varies widely)",
-    salaryHighCost: "$50,000-$85,000 (varies widely)",
+    salary: "$50,000-$75,000 (varies widely)",
+    salaryHighCost: "$60,000-$90,000 (varies widely)",
     training: "1-4 years (depending on path)",
     growth: "1%",
     icon: "🙏",
@@ -642,8 +642,8 @@ export const careerPaths: Record<CareerPath, CareerPathInfo> = {
   },
   mechanic: {
     title: "Mechanic / Technician",
-    salary: "$45,000-$75,000",
-    salaryHighCost: "$55,000-$95,000",
+    salary: "$50,000-$81,000",
+    salaryHighCost: "$60,000-$98,000",
     training: "6 months-2 years",
     growth: "4%",
     icon: "🔧",
