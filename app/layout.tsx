@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { CONTENT_LAST_UPDATED_ISO } from "@/lib/siteMeta";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -53,6 +54,7 @@ export default function RootLayout({
         url: "https://degree2trade.com",
         name: "Degree2Trade",
         publisher: { "@id": "https://degree2trade.com/#organization" },
+        dateModified: CONTENT_LAST_UPDATED_ISO,
       },
     ],
   };

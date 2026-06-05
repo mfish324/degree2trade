@@ -9,6 +9,7 @@ import {
 import { TextWithAcronyms } from "@/components/Acronym";
 import { ResponsiveAd, InContentAd } from "@/components/AdPlaceholder";
 import { Header } from "@/components/Header";
+import { CONTENT_LAST_UPDATED } from "@/lib/siteMeta";
 
 // Generate static params for all careers
 export function generateStaticParams() {
@@ -309,6 +310,9 @@ export default async function CareerPage({
       <footer className="bg-surface py-8 px-4 border-t border-surface-light">
         <div className="max-w-6xl mx-auto text-center text-text-muted text-sm">
           &copy; {new Date().getFullYear()} Degree2Trade. All rights reserved.
+          <span className="block mt-1 text-xs">
+            Salary &amp; career data last updated {CONTENT_LAST_UPDATED}.
+          </span>
         </div>
       </footer>
     </div>
