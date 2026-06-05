@@ -10,6 +10,7 @@ export function Header() {
     { href: "/about", label: "Our Mission" },
     { href: "/programs", label: "Programs" },
     { href: "/library", label: "Career Library" },
+    { href: "/calculator", label: "ROI Calculator" },
     { href: "/financial-aid", label: "Financial Aid" },
     { href: "/for-parents", label: "For Parents" },
     { href: "/for-grads", label: "For Grads" },

@@ -25,6 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/about`, lastModified: new Date(), priority: 0.8 },
     { url: `${baseUrl}/programs`, lastModified: new Date(), priority: 0.8 },
     { url: `${baseUrl}/library`, lastModified: new Date(), priority: 0.8 },
+    { url: `${baseUrl}/calculator`, lastModified: new Date(), priority: 0.8 },
     { url: `${baseUrl}/financial-aid`, lastModified: new Date(), priority: 0.7 },
     { url: `${baseUrl}/for-parents`, lastModified: new Date(), priority: 0.7 },
     { url: `${baseUrl}/for-grads`, lastModified: new Date(), priority: 0.7 },
