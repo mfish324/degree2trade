@@ -7,6 +7,7 @@ import { supabase, Program, CareerPathFilter } from "@/lib/supabase";
 import { careerPaths, CareerPath } from "@/lib/quizData";
 import { ResponsiveAd, InContentAd } from "@/components/AdPlaceholder";
 import { Header } from "@/components/Header";
+import { OfficialFinders } from "@/components/OfficialFinders";
 
 // US State coordinates for distance calculation
 const stateCoordinates: Record<string, { lat: number; lng: number }> = {
@@ -484,6 +485,7 @@ function ProgramsContent() {
       {/* Programs Grid */}
       <section className="py-8 px-4">
         <div className="max-w-6xl mx-auto">
+          {careerFilter !== "military" && <OfficialFinders careerKey={careerFilter} />}
           {filteredPrograms.length === 0 ? (
             careerFilter === "military" ? (
               <div className="max-w-2xl mx-auto">
