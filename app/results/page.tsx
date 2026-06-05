@@ -12,6 +12,7 @@ import {
 import { careerComparisons } from "@/lib/shortageData";
 import { ResponsiveAd } from "@/components/AdPlaceholder";
 import { Header } from "@/components/Header";
+import { EmailCapture } from "@/components/EmailCapture";
 
 type CareerScores = Record<CareerPath, number>;
 
@@ -662,6 +663,18 @@ function ResultsContent() {
       <div className="py-6 flex justify-center">
         <ResponsiveAd desktopSize="leaderboard" mobileSize="mobile-banner" />
       </div>
+
+      {/* Email capture */}
+      <section className="py-8 px-4">
+        <div className="max-w-2xl mx-auto">
+          <EmailCapture
+            source="results"
+            context={{ major: userMajor, topCareer: topThree[0]?.[0] ?? null }}
+            heading="Get your personalized trade-career roadmap"
+            subtext="We'll save your top matches and send the next steps for your degree. No spam — unsubscribe anytime."
+          />
+        </div>
+      </section>
 
       {/* Final CTA */}
       <section className="py-12 px-4 bg-surface">
